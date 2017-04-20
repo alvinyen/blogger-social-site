@@ -28,6 +28,7 @@ module.exports = {
                 loaders : [
                     'style-loader' ,
                     'css-loader' ,
+                    'autoprefixer-loader',
                     'sass-loader'
                 ]
             } ,

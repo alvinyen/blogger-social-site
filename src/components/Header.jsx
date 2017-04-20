@@ -1,14 +1,10 @@
 import React,{Component} from 'react' ;
-
-const style = {
-    backgroundColor: 'blue' ,
-    height: '50px'
-} ;
+import '../styles/main.scss' ;
 
 class Header extends Component {
     render(){
         return (
-            <div style={style}> HeaddfsferYYO XXXXX</div>
+            <div className="header"> HeaddfsferYYO XXXXX</div>
         );
     }
 }
