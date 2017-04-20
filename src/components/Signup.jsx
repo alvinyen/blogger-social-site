@@ -4,7 +4,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import '../styles/main.scss';
 
 
-class Register extends Component {
+class Signup extends Component {
     constructor(props) {
         super();
         this.state = {
@@ -125,5 +125,5 @@ class Register extends Component {
     }
 }
 
-export default Register;
+export default Signup;
 

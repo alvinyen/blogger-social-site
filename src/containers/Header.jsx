@@ -1,6 +1,7 @@
 import React,{Component} from 'react' ;
 import '../styles/main.scss' ;
 import RaisedButton from 'material-ui/RaisedButton';
+import { browserHistory } from 'react-router' ;
 
 // const styles = {
 //     size: {
@@ -11,10 +12,10 @@ import RaisedButton from 'material-ui/RaisedButton';
 
 class Header extends Component {
     login = () => {
-        console.log('login');
+        browserHistory.push('login');
     }
     signup = () => {
-        console.log('signup');
+        browserHistory.push('signup');
     }
 
     render(){
