@@ -34,29 +34,6 @@ class Login extends Component {
   }
   sendRequest = () => {
     console.log('sendRequest') ;
-    // const context = this;//因.then會找不到this
-    // axios.post('/login', {
-    //     account: this.state.account,
-    //     password: this.state.password
-    //   })
-    //   .then(function (response) {
-    //     context.setState({ dialogText:response.data })
-    //     context.setState({ dialog: true });
-    //     axios.get('/getUser',{})
-    //       .then(function (response) {
-    //         if(typeof response.data === 'string'){
-    //           return //如session內無user會回傳空值 type為String
-    //         }
-    //         context.props.userInfoAction(response.data);
-    //         browserHistory.push('/main')
-    //       })
-    //       .catch(function (error) {
-    //         console.log(error);
-    //       });
-    //   })
-    //   .catch(function (error) {
-    //     console.log(error);
-    //   });
   }
   render() {
     return (
