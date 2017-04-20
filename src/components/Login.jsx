@@ -1,11 +1,10 @@
 import React,{Component} from 'react' ;
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
-import '../styles/main.scss'
-
+import '../styles/main.scss' ;
 
 class Login extends Component {
-    constructor(props) {
+  constructor(props) {
       super();
       this.state = {
         account: '',
@@ -15,7 +14,7 @@ class Login extends Component {
         dialog: false,
         dialogText: ''
       }
-    } 
+  } 
   checkAccount = (e) => {
     if (e.target.value === ''){
       this.setState({ accountCheck: false }) ;
