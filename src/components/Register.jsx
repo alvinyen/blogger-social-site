@@ -4,7 +4,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import '../styles/main.scss'
 
 
-class Login extends Component {
+class Register extends Component {
     constructor(props) {
       super();
       this.state = {
@@ -37,7 +37,7 @@ class Login extends Component {
   }
   render() {
     return (
-      <div className="container">
+      <div className="container" style={styles.containerSize}>
         <TextField
           className="innerElement"
           onBlur = { this.checkAccount }
@@ -65,3 +65,10 @@ class Login extends Component {
 }
 
 export default Login ;
+
+const styles = {
+  containerSize: {
+    hegith: '100%'
+  }
+} ;
+
