@@ -8,7 +8,7 @@ const style = {
 class Header extends Component {
     render(){
         return (
-            <div style={style}> HeaddfsferYYO </div>
+            <div style={style}> HeaddfsferYYO XXXXX</div>
         );
     }
 }

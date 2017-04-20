@@ -3,13 +3,10 @@ console.log(__dirname) ;
 
 module.exports = {
     devtool : 'source-map' , 
-    entry : './client/src/main.js'  , 
-    devServer: {
-       inline: true
-    },
+    entry : './src/main.js'  , 
     output : {
-        path : path.join(__dirname, './client/dist/') , // for real deploy bundling
-        publicPath:  '/client/dist' ,  // for dev only
+        path : path.join(__dirname, './dist/') , // for real deploy bundling
+        publicPath:  '/dist' ,  // for dev only
         filename : 'bundle.js'
     } ,
     module : {
@@ -17,7 +14,7 @@ module.exports = {
             { 
                 test : /\.(js|jsx)$/ ,
                 loader : 'babel-loader' ,
-                include : path.join(__dirname,'client/src')
+                include : path.join(__dirname,'/src')
             } ,
             { 
                 test : /\.css$/ ,
