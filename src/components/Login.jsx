@@ -1,66 +1,79 @@
-import React,{Component} from 'react' ;
+import React, { Component } from 'react';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
-import '../styles/main.scss' ;
+import Radium from 'radium';
+import { loginApiAdd } from './../config/config.js';
 
-class Login extends Component {
-  constructor(props) {
-      super();
-      this.state = {
-        account: '',
-        password: '',
-        accountCheck : true,
-        passwordCheck : true,
-        dialog: false,
-        dialogText: ''
-      }
-  } 
-  checkAccount = (e) => {
-    if (e.target.value === ''){
-      this.setState({ accountCheck: false }) ;
-      return ;
+class LogIn extends Component {
+    getStyles() {
+        return {
+            root: {
+                backgroundColor: '#fff',
+                boxShadow: '0 0 0 1px rgba(200, 215, 225, 0.5), 0 1px 2px #e9eff3',
+                textAlign: 'center',
+                padding: '0 1em 1em',
+                margin: '30px 16px',
+                '@media (min-width: 400px)': {
+                    width: '400px',
+                    margin: '30px auto'
+                }
+            },
+            textField: {
+                display: 'block',
+                width: '100%',
+                fontSize: '.9em'
+            },
+            label: {
+                fontWeight: '600',
+                fontSize: '1em',
+                lineHeight: '40px'
+            },
+            button: {
+                width: '130px',
+                height: '40px',
+                marginTop: '30px',
+                marginBottom: '15px'
+            },
+            a: {
+                fontSize: '.8em',
+                textDecoration: 'none',
+                color: 'gray',
+                ':hover': { color: '#00bcd4' }
+            }
+        };
     }
-    this.setState({ accountCheck: true }) ;
-    this.state.account = e.target.value;
-  }
-  checkPassword = (e) => {
-    this.state.password = e.target.value;
-    if (e.target.value === ''){
-      this.setState({ passwordCheck: false }) ;
-      return ;
+    onSubmit = async (e) => {
+        e.preventDefault();
+        let username = this.refs.username.getValue();
+        let password = this.refs.password.getValue();
+        console.log({ username, password });
+        const data = { username, password };
+        try {
+            let response = await fetch( loginApiAdd, {
+                method: `post`,
+                headers: {
+                    "Content-Type": `application/json`
+                },
+                body: JSON.stringify(data)
+            });
+            let data = await response.json();
+            console.log(data);
+        } catch (e) {
+            console.log("error...", e);
+        }
     }
-    this.setState({ passwordCheck: true }) ;
-  }
-  sendRequest = () => {
-    console.log('sendRequest') ;
-  }
-  render() {
-    return (
-      <div className="container">
-        <TextField
-          className="innerElement"
-          onBlur = { this.checkAccount }
-          hintText="帳號"
-          floatingLabelText="帳號"
-          errorText={ this.state.accountCheck ? '' : 'This field is required' }
-        />
-        <br />
-        <TextField
-          className="innerElement"
-          type="password"
-          onBlur = { this.checkPassword }
-          hintText="密碼"
-          floatingLabelText="密碼"
-          errorText={ this.state.passwordCheck ? '' : 'This field is required' }
-        />
-        <br />
-        <RaisedButton 
-          className="innerElement"
-          onClick={() => this.sendRequest()} label="登入" primary={true}
-        />
-      </div>
-    )
-  }
+    render() {
+        let styles = this.getStyles();
+        return (
+            <div style={styles.root}>
+                <form onSubmit={this.onSubmit}>
+                    <TextField style={styles.textField} floatingLabelText="帳號" ref="username" />
+                    <TextField style={styles.textField} floatingLabelText="密碼" type="password" ref="password" />
+                    <RaisedButton primary={true} style={styles.button} labelStyle={styles.label} type="submit" label="登入" />
+                </form>
+            </div>
+        );
+    }
 }
 
-export default Login ;
+export default Radium(LogIn);

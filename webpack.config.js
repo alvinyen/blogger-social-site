@@ -3,7 +3,7 @@ console.log(__dirname) ;
 
 module.exports = {
     devtool : 'source-map' , 
-    entry : './src/main.js'  , 
+    entry : ['babel-polyfill','./src/main.js'], 
     output : {
         path : path.join(__dirname, './dist/') , // for real deploy bundling
         publicPath:  '/dist' ,  // for dev only
