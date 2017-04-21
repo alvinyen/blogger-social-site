@@ -3,10 +3,12 @@ import Header from './Header.jsx';
 import Login from '../components/Login.jsx';
 import Signup from '../components/Signup.jsx';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import Radium, { StyleRoot } from 'radium';
 
 class App extends Component {
     render() {
         return (
+            <StyleRoot>
             <MuiThemeProvider>
                 <div>
                     <Header />
@@ -15,11 +17,12 @@ class App extends Component {
                     </div>
                 </div>
             </MuiThemeProvider>
+            </StyleRoot>
         );
     }
 }
 
-export default App;
+export default Radium(App) ;
 
 const styles = {
     content: {

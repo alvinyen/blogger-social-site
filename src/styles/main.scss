@@ -28,13 +28,13 @@ html,body{
 }
 .login{
     position: absolute;
-    right: 3%;
     margin: 20px; 
+    right: 10px;
 }
 .signup{
     position: absolute;
     margin: 20px;
-    right: 13%;
+    right: 120px;
 }
 .clearfix{
     &::before,&::after{
