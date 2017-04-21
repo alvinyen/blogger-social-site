@@ -41,13 +41,33 @@ class LogIn extends Component {
             }
         };
     }
+    onSubmit = async (e) => {
+        e.preventDefault();
+        let username = this.refs.username.getValue();
+        let password = this.refs.password.getValue();
+        console.log({ username, password });
+        const data = { username, password };
+        try {
+            let response = await fetch('http://localhost:3000/auth/login', {
+                method: `post`,
+                headers: {
+                    "Content-Type": `application/json`
+                },
+                body: JSON.stringify(data)
+            });
+            let data = await response.json();
+            console.log(data);
+        } catch (e) {
+            console.log("error...", e);
+        }
+    }
     render() {
         let styles = this.getStyles();
         return (
             <div style={styles.root}>
-                <form>
-                    <TextField style={styles.textField} floatingLabelText="帳號" />
-                    <TextField style={styles.textField} floatingLabelText="密碼" type="password" />
+                <form onSubmit={this.onSubmit}>
+                    <TextField style={styles.textField} floatingLabelText="帳號" ref="username" />
+                    <TextField style={styles.textField} floatingLabelText="密碼" type="password" ref="password" />
                     <RaisedButton primary={true} style={styles.button} labelStyle={styles.label} type="submit" label="登入" />
                 </form>
             </div>
