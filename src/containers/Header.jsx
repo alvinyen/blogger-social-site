@@ -1,15 +1,9 @@
 import React, { Component } from 'react';
 import '../styles/main.scss';
 import RaisedButton from 'material-ui/RaisedButton';
-import { browserHistory } from 'react-router';
+import { browserHistory, Link } from 'react-router';
 import Radium from 'radium';
-
-// const styles = {
-//     size: {
-//         height: '50px',
-//         width: '80px'
-//     }
-// } ;
+import ActionHome from 'material-ui/svg-icons/action/home';
 
 class Header extends Component {
     login = () => {
@@ -23,6 +17,9 @@ class Header extends Component {
         return (
             <div className="header">
                 {/*<a style={styles.nav} key='1'>aaaa</a>*/}
+                <Link to='/'>
+                    <ActionHome style={styles.actionHome} color='#fff' />
+                </Link>
                 <RaisedButton
                     label="登入"
                     primary={true}
@@ -40,12 +37,18 @@ class Header extends Component {
 
 export default Radium(Header);
 
-//test Radium
 const styles = {
     nav: {
+        //test Radium
         ':hover': {
             cursor: 'pointer',
             textDecoration: 'underline'
         }
+    },
+    actionHome: {
+        height: 40,
+        width: 40,
+        marginLeft: 10,
+        marginTop: 15
     }
 };

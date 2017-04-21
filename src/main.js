@@ -4,13 +4,8 @@ import React from 'react';
 import App from './containers/App.jsx';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
-import { Router, browserHistory } from 'react-router';
-import rootRoute from './routes/rootRoute' ;
+import { renderRoute } from './routes/rootRoute';
 
 ReactDOM.render(
-    <div>
-        <Router history={browserHistory}>
-            {rootRoute}
-        </Router>
-     </div>
+    renderRoute() 
     , document.getElementById("app"));
