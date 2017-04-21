@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import Radium from 'radium';
+import { loginApiAdd } from './../config/config.js';
 
 class LogIn extends Component {
     getStyles() {
@@ -48,7 +49,7 @@ class LogIn extends Component {
         console.log({ username, password });
         const data = { username, password };
         try {
-            let response = await fetch('http://localhost:3000/auth/login', {
+            let response = await fetch( loginApiAdd, {
                 method: `post`,
                 headers: {
                     "Content-Type": `application/json`
