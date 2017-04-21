@@ -3,6 +3,8 @@ import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import Radium from 'radium';
 import { loginApiAdd } from './../config/config.js';
+import {connect} from 'react-redux' ;
+import login from './../redux/actions/authActions.js' ;
 
 class LogIn extends Component {
     getStyles() {
@@ -46,21 +48,22 @@ class LogIn extends Component {
         e.preventDefault();
         let username = this.refs.username.getValue();
         let password = this.refs.password.getValue();
-        console.log({ username, password });
-        const data = { username, password };
-        try {
-            let response = await fetch( loginApiAdd, {
-                method: `post`,
-                headers: {
-                    "Content-Type": `application/json`
-                },
-                body: JSON.stringify(data)
-            });
-            let data = await response.json();
-            console.log(data);
-        } catch (e) {
-            console.log("error...", e);
-        }
+        // console.log({ username, password });
+        // const data = { username, password };
+        // try {
+        //     let response = await fetch( loginApiAdd, {
+        //         method: `post`,
+        //         headers: {
+        //             "Content-Type": `application/json`
+        //         },
+        //         body: JSON.stringify(data)
+        //     });
+        //     let data = await response.json();
+        //     console.log(data);
+        // } catch (e) {
+        //     console.log("error...", e);
+        // }
+        this.props.login({username, password});
     }
     render() {
         let styles = this.getStyles();
@@ -76,4 +79,9 @@ class LogIn extends Component {
     }
 }
 
-export default Radium(LogIn);
+LogIn.propTypes = {
+    login: React.PropTypes.func.isRequired
+}
+
+export default connect(null, {login})(Radium(LogIn));
+
