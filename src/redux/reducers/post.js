@@ -1,4 +1,4 @@
-import { ADD_POST } from './../actions/postActions' ;
+import { ADD_POST, LOAD_POSTS } from './../actions/postActions' ;
 
 export default ( state = [], action = {} ) => {
     switch(action.type){
@@ -6,6 +6,8 @@ export default ( state = [], action = {} ) => {
             const testArr = [...state, action.post] ;
             console.log(...testArr);
             return testArr ;
+        case LOAD_POSTS:
+            return action.posts ;
         default:
             return state;
     }

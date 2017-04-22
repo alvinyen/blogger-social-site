@@ -1,7 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PostItem from './PostItem.jsx';
+import { fetchPosts } from'./../redux/actions/postActions.js' ;
+
 class Home extends Component {
+    componentWillMount(){
+        if(this.props.post.length === 0 ){
+            this.props.fetchPosts();
+        }
+    }
+
     render() {
         const styles = {
             root: {
@@ -26,4 +34,4 @@ Home.propTypes = {
 
 export default connect( ({ post }) => ({
     post
-}) )(Home);
+}) , {fetchPosts} )(Home);

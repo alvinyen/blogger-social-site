@@ -5,8 +5,15 @@ import RaisedButton from 'material-ui/RaisedButton' ;
 import { connect } from 'react-redux' ;
 // import PostList from './../components/PostList.jsx';
 import PostItem from './../components/PostItem.jsx';
+import { fetchPosts } from'./../redux/actions/postActions.js' ;
 
 class Dashboard extends Component {
+    componentWillMount(){
+        if(this.props.post.length === 0 ){
+            this.props.fetchPosts();
+        }
+    }
+
     render() {
         const PostList = this.props.post.map( (post, index) => {
             return <PostItem key={index} post={post} />
@@ -42,4 +49,4 @@ Dashboard.propTypes = {
 
 export default connect( ({ post }) => ({
     post
-}) )(Dashboard);
+}) , {fetchPosts} )(Dashboard);
