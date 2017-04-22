@@ -3,10 +3,16 @@ import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import Radium from 'radium';
 import { connect } from 'react-redux';
-import { signup } from './../redux/actions/authActions.js';
+import { signup, setAuthErrorEmpty } from './../redux/actions/authActions.js';
 
 
 class Signup extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            passwordDiffConfirm: false
+        } ;
+    }
     getStyles() {
         return {
             root: {
@@ -51,10 +57,15 @@ class Signup extends Component {
         let confirmPassword = this.refs.confirmPassword.getValue();
         if(password !== confirmPassword){
             console.log('密碼不同...');
+            this.setState({ passwordDiffConfirm:true });
             return ;
         }
+        this.setState({ passwordDiffConfirm:false });
         console.log(username,password,confirmPassword);
         this.props.signup({username, password});
+    }
+    componentWillUnmount(){
+        this.props.setAuthErrorEmpty();
     }
     render() {
         let styles = this.getStyles();
@@ -82,14 +93,21 @@ class Signup extends Component {
                         type="submit"
                         label="註冊" />
                 </form>
+                <div style={{color: 'red'}}>
+                    { this.state.passwordDiffConfirm ? '2次輸入的密碼不同唷，請重新輸入~':'' }
+                    { this.props.auth.errorMsg } 
+                </div>
             </div>
         );
     }
 }
 
 Signup.propTypes = {
-    signup: React.PropTypes.func.isRequired
+    signup: React.PropTypes.func.isRequired,
+    setAuthErrorEmpty:  React.PropTypes.func.isRequired
 }
 
-export default connect(null, {signup})(Radium(Signup));
+export default connect(( { auth } )=>({
+    auth
+}), {signup, setAuthErrorEmpty})(Radium(Signup));
 
