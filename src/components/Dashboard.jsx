@@ -1,11 +1,26 @@
-import React,{Component} from 'react' ;
+import React, { Component } from 'react';
 
 class Dashboard extends Component {
-    render(){
-        return(
-            <h5> Dashboard yo.. </h5>
+    render() {
+        const styles = {
+            root: {
+                maxWidth: '720px',
+                margin: '30px auto'
+            },
+            actions: {
+                marginTop: '32px',
+                marginBottom: '32px',
+                textAlign: 'center'
+            }
+        }
+        return (
+            <div style={styles.root}>
+                <div style={styles.actions}>
+                    dashboard yo ..
+                </div>
+            </div>
         );
     }
 }
 
-export default Dashboard ;
+export default Dashboard;
