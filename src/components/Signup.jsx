@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import Radium from 'radium';
-import { loginApiAdd } from './../config/config.js';
 import { connect } from 'react-redux';
-import login from './../redux/actions/authActions.js';
+import { signup } from './../redux/actions/authActions.js';
+
 
 class Signup extends Component {
     getStyles() {
@@ -44,22 +44,37 @@ class Signup extends Component {
             }
         };
     }
+    onSubmit = (e) => {
+        e.preventDefault();
+        let username = this.refs.username.getValue();
+        let password = this.refs.password.getValue();
+        let confirmPassword = this.refs.confirmPassword.getValue();
+        if(password !== confirmPassword){
+            console.log('密碼不同...');
+            return ;
+        }
+        console.log(username,password,confirmPassword);
+        this.props.signup({username, password});
+    }
     render() {
         let styles = this.getStyles();
         return (
             <div style={styles.root}>
-                <form>
+                <form onSubmit={this.onSubmit}>
                     <TextField
                         style={styles.textField}
-                        floatingLabelText="帳號" />
+                        floatingLabelText="帳號"
+                        ref="username" />
                     <TextField
                         style={styles.textField}
                         floatingLabelText="密碼"
-                        type="password" />
+                        type="password" 
+                        ref="password" />
                     <TextField
                         style={styles.textField}
                         floatingLabelText="確認密碼"
-                        type="password" />
+                        type="password" 
+                        ref="confirmPassword" />
                     <RaisedButton
                         primary={true}
                         style={styles.button}
@@ -72,5 +87,9 @@ class Signup extends Component {
     }
 }
 
-export default Radium(Signup);
+Signup.propTypes = {
+    signup: React.PropTypes.func.isRequired
+}
+
+export default connect(null, {signup})(Radium(Signup));
 
