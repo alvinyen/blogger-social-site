@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import NewPost from './NewPost.jsx' ;
+import {Link} from 'react-router' ;
+import RaisedButton from 'material-ui/RaisedButton' ;
 
 class Dashboard extends Component {
     render() {
@@ -16,7 +19,9 @@ class Dashboard extends Component {
         return (
             <div style={styles.root}>
                 <div style={styles.actions}>
-                    dashboard yo ..
+                    <Link to='/posts/new'>
+                        <RaisedButton label="添加新文章" primary={true} />
+                    </Link>
                 </div>
             </div>
         );
