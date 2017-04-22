@@ -1,5 +1,6 @@
 
 export const AUTH_USER = 'AUTH_USER';
+export const AUTH_ERROR = 'AUTH_ERROR';
 import { loginApiAdd, signupApiAdd } from './../../config/config';
 import { browserHistory } from 'react-router';
 
@@ -8,6 +9,13 @@ export function setCurrentUser(user) {
         type: AUTH_USER,
         user
     };
+}
+
+export function setAuthErrorAction(errorMsg){
+    return {
+        type: AUTH_ERROR,
+        errorMsg
+    } ;
 }
 
 export default function login(data) {
@@ -34,6 +42,8 @@ export default function login(data) {
             console.log('yo..登入成功!!');
         } catch (e) {
             console.log("error...", e);
+            console.log("用戶不存在或密碼無效，請重新輸入帳密~~");
+            dispatch(setAuthErrorAction('用戶不存在或密碼無效，請重新輸入帳密~~'));
         }
     }
 }

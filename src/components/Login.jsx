@@ -74,6 +74,7 @@ class Login extends Component {
                     <TextField style={styles.textField} floatingLabelText="密碼" type="password" ref="password" />
                     <RaisedButton primary={true} style={styles.button} labelStyle={styles.label} type="submit" label="登入" />
                 </form>
+                { <div style={ {color: "red"} } > {this.props.auth.errorMsg } </div> }
             </div>
         );
     }
@@ -83,5 +84,7 @@ Login.propTypes = {
     login: React.PropTypes.func.isRequired
 }
 
-export default connect(null, {login})(Radium(Login));
+export default connect(( { auth } )=>({
+    auth
+}), {login})(Radium(Login));
 

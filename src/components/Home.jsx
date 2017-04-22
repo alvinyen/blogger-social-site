@@ -29,7 +29,7 @@ class Home extends Component {
 }
 
 Home.propTypes = {
-    posts: React.PropTypes.array.isRequired
+    post: React.PropTypes.array.isRequired
 }
 
 export default connect( ({ post }) => ({
