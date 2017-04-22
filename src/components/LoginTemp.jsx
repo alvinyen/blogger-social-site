@@ -3,7 +3,7 @@ import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import '../styles/main.scss' ;
 
-class Login extends Component {
+class LoginTemp extends Component {
   constructor(props) {
       super();
       this.state = {
@@ -63,4 +63,4 @@ class Login extends Component {
   }
 }
 
-export default Login ;
+export default LoginTemp ;

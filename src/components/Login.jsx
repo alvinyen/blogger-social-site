@@ -6,7 +6,7 @@ import { loginApiAdd } from './../config/config.js';
 import {connect} from 'react-redux' ;
 import login from './../redux/actions/authActions.js' ;
 
-class LogIn extends Component {
+class Login extends Component {
     getStyles() {
         return {
             root: {
@@ -79,9 +79,9 @@ class LogIn extends Component {
     }
 }
 
-LogIn.propTypes = {
+Login.propTypes = {
     login: React.PropTypes.func.isRequired
 }
 
-export default connect(null, {login})(Radium(LogIn));
+export default connect(null, {login})(Radium(Login));
 
