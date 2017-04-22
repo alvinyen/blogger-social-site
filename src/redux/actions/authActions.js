@@ -30,7 +30,7 @@ export default function login(data) {
             sessionStorage.setItem('jwtToken', token);
             sessionStorage.setItem('user', JSON.stringify(user));
             dispatch(setCurrentUser(user));
-            user.admin ? browserHistory.push('/dashboard') : browserHistory.push('/'); 
+            user.admin ? browserHistory.push('dashboard') : browserHistory.push('/'); 
             console.log('yo..登入成功!!');
         } catch (e) {
             console.log("error...", e);
