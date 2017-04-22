@@ -1,4 +1,5 @@
 
+export const SET_AUTH_ERROR_MSG_EMPTY = 'SET_AUTH_ERROR_MSG_EMPTY' ;
 export const AUTH_USER = 'AUTH_USER';
 export const AUTH_ERROR = 'AUTH_ERROR';
 import { loginApiAdd, signupApiAdd } from './../../config/config';
@@ -16,6 +17,14 @@ export function setAuthErrorAction(errorMsg){
         type: AUTH_ERROR,
         errorMsg
     } ;
+}
+
+export function setAuthErrorEmpty(){
+    return function (dispatch) {
+        dispatch({
+            type: SET_AUTH_ERROR_MSG_EMPTY
+        });
+    }
 }
 
 export default function login(data) {
@@ -69,6 +78,9 @@ export function signup(data) {
             });
             console.log(await response);
             if (response.status != 200) {
+                // console.log(response.status);
+                // console.log(response);
+                // console.log(await response.json().errorMsg);
                 throw new Error(`${response.statusText}`);
             }
             const responseData = await response.json();
@@ -81,6 +93,7 @@ export function signup(data) {
             console.log('註冊成功!!', token, user);
         } catch (e) {
             console.log("error...", e);
+            dispatch(setAuthErrorAction('User already exist!!!'));
         }
     }
 }

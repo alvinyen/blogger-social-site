@@ -4,7 +4,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import Radium from 'radium';
 import { loginApiAdd } from './../config/config.js';
 import {connect} from 'react-redux' ;
-import login from './../redux/actions/authActions.js' ;
+import login, { setAuthErrorEmpty } from './../redux/actions/authActions.js' ;
 
 class Login extends Component {
     getStyles() {
@@ -65,6 +65,9 @@ class Login extends Component {
         // }
         this.props.login({username, password});
     }
+    componentWillUnmount(){
+        this.props.setAuthErrorEmpty();
+    }
     render() {
         let styles = this.getStyles();
         return (
@@ -81,10 +84,11 @@ class Login extends Component {
 }
 
 Login.propTypes = {
-    login: React.PropTypes.func.isRequired
+    login: React.PropTypes.func.isRequired,
+    setAuthErrorEmpty: React.PropTypes.func.isRequired
 }
 
 export default connect(( { auth } )=>({
     auth
-}), {login})(Radium(Login));
+}), {login, setAuthErrorEmpty})(Radium(Login));
 

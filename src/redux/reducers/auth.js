@@ -1,5 +1,5 @@
 import isEmpty from 'lodash/fp/isEmpty' ;
-import { AUTH_USER, AUTH_ERROR} from './../actions/authActions' ;
+import { AUTH_USER, AUTH_ERROR, SET_AUTH_ERROR_MSG_EMPTY } from './../actions/authActions' ;
 
 const initialState = {
     isAuthenticated: false,
@@ -21,6 +21,11 @@ export default function auth(state = initialState, action = {}){
                 isAuthenticated: false,
                 currentUser: {},
                 errorMsg: action.errorMsg
+            };
+        case SET_AUTH_ERROR_MSG_EMPTY:
+            return {
+                ...state ,
+                errorMsg: ''
             };
         default:
             return state ;
