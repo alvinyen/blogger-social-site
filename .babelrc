@@ -3,5 +3,10 @@
 // presets設定es2015、satge-0、react，讓webpack能夠透過babel來轉譯ES6、ES7及react的語法
   "presets" : ["es2015", "stage-0", "react"] , 
 // 如果要再專案中使用es7所定義的async await語法，則要如下設定transform-async-to-generator這個plugin來處理
-  "plugins" : [ "transform-async-to-generator" ]
+  "plugins" : [ "transform-async-to-generator", "transform-runtime" ],
+  "env": {
+    "production": {
+      "plugins": ["transform-react-remove-prop-types"]
+    }
+  }
 }
