@@ -28,6 +28,26 @@ module.exports = {
                 test: /\.(js|jsx)$/,
                 loaders: ['babel-loader'],
                 include: path.join(__dirname, '/src')
+            },
+            { 
+                test : /\.css$/ ,
+                loaders : [
+                    'style-loader' ,
+                    'css-loader'
+                ]
+            } ,
+            { 
+                test : /\.scss$/ ,
+                loaders : [
+                    'style-loader' ,
+                    'css-loader' ,
+                    'autoprefixer-loader',
+                    'sass-loader'
+                ]
+            } ,
+            {  
+                test : /\.(jpe?g|png)$/ ,
+                loader : 'file-loader'
             }
         ]
     }
