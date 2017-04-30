@@ -11,6 +11,7 @@ import Home from './../components/Home.jsx' ;
 import Dashboard from './../components/Dashboard.jsx' ;
 import NewPost from './../components/NewPost.jsx' ;
 import ShowPost from './../components/post/ShowPost.jsx' ;
+import EditPost from './../components/post/EditPost.jsx' ;
 
 if(sessionStorage.jwtToken){
     const user = JSON.parse(sessionStorage.user);
@@ -43,6 +44,7 @@ export const renderRoute = () => (
                 <Route path="dashboard" component={Dashboard} onEnter={requireAuth} />
                 <Route path="posts/new" component={NewPost} onEnter={requireAuth} />
                 <Route path="posts/:post_id" component={ShowPost} />
+                <Route path="posts/:post_id/edit" component={EditPost}  onEnter={requireAuth} />
             </Route>
         </Router>
     </Provider>

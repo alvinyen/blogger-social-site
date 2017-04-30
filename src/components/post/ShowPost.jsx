@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux' ;
-import { getPost } from './../../redux/actions/postActions.js'
+import { getPost, clearPost } from './../../redux/actions/postActions.js'
 
 class ShowPost extends Component {
     componentDidMount() {               // 因為跟react-router連結所以可以拿到post_id ??
         this.props.getPost( this.props.params.post_id );
-        
     }
+    componentWillUnmount(){
+        this.props.clearPost();
+    }
+
     getStyles() {
         return {
             container: {
@@ -43,4 +46,4 @@ ShowPost.propTypes = {
 
 export default connect( ({ post_ }) => ({
     post_
-}), { getPost } )(ShowPost);
+}), { getPost, clearPost } )(ShowPost);

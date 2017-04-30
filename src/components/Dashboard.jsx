@@ -16,6 +16,7 @@ class Dashboard extends Component {
 
     render() {
         const PostList = this.props.post.map( (post, index) => {
+            console.log(post);
             return <PostItem key={index} post={post} />
         } ); 
 
