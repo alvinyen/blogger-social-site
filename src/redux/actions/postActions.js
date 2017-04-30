@@ -1,6 +1,7 @@
 export const ADD_POST = 'ADD_POST';
 export const LOAD_POSTS = 'LOAD_POSTS';
-import { newPostApiAdd } from './../../config/config';
+export const LOAD_POST = 'LOAD_POST' ;
+import { newPostApiAdd, getPostApiAdd } from './../../config/config';
 import { browserHistory } from 'react-router';
 
 export const newPost = (data) => {
@@ -38,6 +39,22 @@ export const fetchPosts = () => {
             }
             const responseData = await response.json();
             dispatch( { type: LOAD_POSTS, posts: responseData.posts } );
+        }catch(e){
+            console.log('error occur when fetchPosts action ', e) ;
+        }
+    }
+}
+
+export const getPost = (id) => {
+    return async (dispatch) => {
+        try{
+            console.log(`getPost(id): ${getPostApiAdd}${id}`);
+            let response = await fetch(`${getPostApiAdd}${id}`);
+            if (response.status != 200) {
+                throw new Error(`${response.statusText}`);
+            }
+            const responseData = await response.json();
+            dispatch( { type: LOAD_POST, post: responseData.post } );
         }catch(e){
             console.log('error occur when fetchPosts action ', e) ;
         }

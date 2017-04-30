@@ -10,6 +10,7 @@ import { setCurrentUser } from './../redux/actions/authActions' ;
 import Home from './../components/Home.jsx' ;
 import Dashboard from './../components/Dashboard.jsx' ;
 import NewPost from './../components/NewPost.jsx' ;
+import ShowPost from './../components/post/ShowPost.jsx' ;
 
 if(sessionStorage.jwtToken){
     const user = JSON.parse(sessionStorage.user);
@@ -40,7 +41,8 @@ export const renderRoute = () => (
                 <Route path="signup" component={Signup} />
                 <Route path="login" component={Login} />
                 <Route path="dashboard" component={Dashboard} onEnter={requireAuth} />
-                <Route path="/posts/new" component={NewPost} onEnter={requireAuth} />
+                <Route path="posts/new" component={NewPost} onEnter={requireAuth} />
+                <Route path="posts/:post_id" component={ShowPost} />
             </Route>
         </Router>
     </Provider>

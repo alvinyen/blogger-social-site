@@ -33,7 +33,7 @@ class Dashboard extends Component {
         return (
             <div style={styles.root}>
                 <div style={styles.actions}>
-                    <Link to='/posts/new'>
+                    <Link to='posts/new'>
                         <RaisedButton label="添加新文章" primary={true} />
                     </Link>
                 </div>

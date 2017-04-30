@@ -18,8 +18,8 @@ class Header extends Component {
 
         const LoginLink = (
             <span>
-                <Link to='/signup' style={styles.nav} className="signup">註冊</Link>
-                <Link to='/login' style={styles.nav} className="login">登入</Link>
+                <Link to='signup' style={styles.nav} className="signup">註冊</Link>
+                <Link to='login' style={styles.nav} className="login">登入</Link>
             </span>
         );
 
