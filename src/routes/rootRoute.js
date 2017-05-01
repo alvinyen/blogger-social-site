@@ -44,7 +44,7 @@ export const renderRoute = () => (
                 <Route path="dashboard" component={Dashboard} onEnter={requireAuth} />
                 <Route path="posts/new" component={NewPost} onEnter={requireAuth} />
                 <Route path="posts/:post_id" component={ShowPost} />
-                <Route path="posts/:post_id/edit" component={EditPost}  onEnter={requireAuth} />
+                <Route path="posts/:post_id/edit" component={EditPost}  onEnter={requireAuth} /> 
             </Route>
         </Router>
     </Provider>

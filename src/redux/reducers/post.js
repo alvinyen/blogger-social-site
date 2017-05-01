@@ -3,28 +3,37 @@ import map from 'lodash/fp/map';
 import filter from 'lodash/fp/filter';
 
 export default (state = [], action = {}) => {
+    // console.log(state);
     switch (action.type) {
         case ADD_POST:
             const testArr = [...state, action.post];
             console.log(...testArr);
             return testArr;
-        case LOAD_POSTS:
-            return action.posts;
+        case LOAD_POSTS: 
+            return action.posts; 
+                // array
+                // state.post = [ { _id,name }, { _id,name }, ....]
         case EDIT_POST:
-            return map((post, index) => {
-                if (post._id === action.post._id) {
+            return state.map( (post) => {
+                if(post._id === action.post._id){
                     return action.post
                 } else {
-                    return post
+                    return post ;
                 }
-            }, state) ;
+            } );
         case DELETE_POST:
-            return filter((post) => {
-                console.log(action);
-                console.log(`action._id: ${action._id}`);
-                console.log(`post._id: ${post._id}`);
-                return post._id !== action._id
-            }, state) ;
+            console.log(`delete post reducer`);
+            const index =  state.findIndex( (post, index) => {
+                console.log(`index: ${index}`);
+                return post._id === action._id ;
+            } );
+            console.log(index) ;
+            if( index!==-1 ){
+                let newStateData = state ;
+                newStateData.splice( index, 1 );
+            }else{
+                return state ;
+            }
         default:
             return state;
     }

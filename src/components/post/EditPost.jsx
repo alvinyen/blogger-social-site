@@ -6,10 +6,12 @@ import { getPost, clearPost, editPost } from './../../redux/actions/postActions.
 import isEmpty from 'lodash/fp/isEmpty';
 
 class EditPost extends Component {
-    componentDidMount() {
+    componentWillMount = () => {
+        console.log(`params`);
+        console.log(this.props.params);
         this.props.getPost(this.props.params.post_id);
     }
-    componentWillUnmount(){
+    componentWillUnmount = () => {
         this.props.clearPost();
     }
 
@@ -45,7 +47,7 @@ class EditPost extends Component {
         return (
             <div style={styles.root}>
                 <p style={styles.title}>編輯文章</p>
-                <form onSubmit={this.handleSubmit.bind(this)}>
+                <form onSubmit={this.handleSubmit}>
                     { !isEmpty( post_ ) ? <BasicForm ref='basic' post_ ={ post_ } /> : ''}
                     < div style={styles.submit}>
                         <RaisedButton type="submit" label="更新" primary={true} />

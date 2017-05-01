@@ -3,10 +3,10 @@ import { connect } from 'react-redux' ;
 import { getPost, clearPost } from './../../redux/actions/postActions.js'
 
 class ShowPost extends Component {
-    componentDidMount() {               // 因為跟react-router連結所以可以拿到post_id ??
+    componentWillMount = () => {               // 因為跟react-router連結所以可以拿到post_id ??
         this.props.getPost( this.props.params.post_id );
     }
-    componentWillUnmount(){
+    componentWillUnmount = () => {
         this.props.clearPost();
     }
 

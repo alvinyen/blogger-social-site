@@ -33,9 +33,8 @@ class Header extends Component {
         return (
             <div className="header">
                 {/*<a style={styles.nav} key='1'>aaaa</a>*/}
-                <Link to='/'>
-                    <Link to='/'><ActionHome color='#fff' style={styles.actionHome} /></Link>
-                </Link>
+                { currentUser.admin ? 
+                    '' : <Link to='/'><ActionHome color='#fff' style={styles.actionHome} /></Link> }
                 {isAuthenticated ? LogoutLink : LoginLink}
             </div>
         );
@@ -81,5 +80,5 @@ const styles = {
 
 export default connect(({ auth }) => ({
     auth
-}), { logout } )(Radium(Header));
+}), { logout })(Radium(Header));
 
