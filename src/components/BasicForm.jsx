@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import TextField from 'material-ui/TextField';
 
 class BasicForm extends Component {
-    getBasicFormInputValue(){
+    getBasicFormInputValue() {
         const name = this.refs.name.getValue();
         const content = this.refs.content.getValue();
-        return { name, content } ;
+        return { name, content };
     }
-    render() {
-        let styles = {
+    getStyles() {
+        return {
             root: {
                 padding: '20px',
                 marginTop: '32px',
@@ -20,17 +20,27 @@ class BasicForm extends Component {
                 fontSize: '.85em',
                 width: '100%'
             }
-        }
+        };
+    }
+    render() {
+        const styles = this.getStyles() ;
+        const { post_ } = this.props ;
+        console.log( `post_: ${post_}` ) ;
         return (
             <div style={styles.root}>
-                <TextField ref='name' floatingLabelText='標題' style={styles.textField} />
+                <TextField
+                    ref='name'
+                    floatingLabelText='標題'
+                    style={styles.textField}
+                    defaultValue={ post_ ? post_.name : '' } />
                 <div style={{ marginTop: '15px', marginBottom: '15px' }}>
-                    <TextField 
-                        ref='content' 
-                        floatingLabelText="內容" 
-                        multiLine={true} 
+                    <TextField
+                        ref='content'
+                        floatingLabelText="內容"
+                        multiLine={true}
                         rows={3}
-                        style={styles.textField} />
+                        style={styles.textField}
+                        defaultValue={ post_ ? post_.content : '' }  />
                 </div>
             </div>
         );

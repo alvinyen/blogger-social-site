@@ -3,10 +3,20 @@ import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import Radium from 'radium';
 import { loginApiAdd } from './../config/config.js';
-import {connect} from 'react-redux' ;
-import login, { setAuthErrorEmpty } from './../redux/actions/authActions.js' ;
+import { connect } from 'react-redux';
+import login, { setAuthErrorEmpty } from './../redux/actions/authActions.js';
 
 class Login extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            noValueConfirm: false,
+            clearErrorMsg: false
+        };
+    }
+    componentWillUnmount() {
+        this.props.setAuthErrorEmpty();
+    }
     getStyles() {
         return {
             root: {
@@ -46,8 +56,15 @@ class Login extends Component {
     }
     onSubmit = async (e) => {
         e.preventDefault();
-        let username = this.refs.username.getValue();
-        let password = this.refs.password.getValue();
+        this.props.setAuthErrorEmpty();
+        let username = this.refs.username.getValue().trim();
+        let password = this.refs.password.getValue().trim();
+        if (username.length === 0 || password.length === 0) {
+            this.setState({ noValueConfirm: true });
+            return;
+        } else {
+            this.setState({ noValueConfirm: false });
+        }
         // console.log({ username, password });
         // const data = { username, password };
         // try {
@@ -63,10 +80,7 @@ class Login extends Component {
         // } catch (e) {
         //     console.log("error...", e);
         // }
-        this.props.login({username, password});
-    }
-    componentWillUnmount(){
-        this.props.setAuthErrorEmpty();
+        this.props.login({ username, password });
     }
     render() {
         let styles = this.getStyles();
@@ -77,7 +91,10 @@ class Login extends Component {
                     <TextField style={styles.textField} floatingLabelText="密碼" type="password" ref="password" />
                     <RaisedButton primary={true} style={styles.button} labelStyle={styles.label} type="submit" label="登入" />
                 </form>
-                { <div style={ {color: "red"} } > {this.props.auth.errorMsg } </div> }
+                <div style={{ color: 'red' }}>
+                    {this.state.noValueConfirm ? '欄位內容不可為空唷~' : ''}
+                </div>
+                {<div style={{ color: "red" }} > {this.props.auth.errorMsg} </div>}
             </div>
         );
     }
@@ -88,7 +105,7 @@ Login.propTypes = {
     setAuthErrorEmpty: React.PropTypes.func.isRequired
 }
 
-export default connect(( { auth } )=>({
+export default connect(({ auth }) => ({
     auth
-}), {login, setAuthErrorEmpty})(Radium(Login));
+}), { login, setAuthErrorEmpty })(Radium(Login));
 

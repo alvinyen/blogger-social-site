@@ -1,22 +1,32 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PostItem from './PostItem.jsx';
-import { fetchPosts } from'./../redux/actions/postActions.js' ;
+import { fetchPosts } from './../redux/actions/postActions.js';
+import { browserHistory } from 'react-router';
 
 class Home extends Component {
-    componentWillMount(){
-        if(this.props.post.length === 0 ){
+    componentWillMount() {
+        console.log(this.props.auth.currentUser.admin);
+        if( this.props.auth.currentUser.admin ){
+            browserHistory.push('dashboard') ;
+        }
+        if (this.props.post.length === 0) {
             this.props.fetchPosts();
         }
     }
 
-    render() {
-        const styles = {
+    getStyles = () => {
+        return {
             root: {
                 maxWidth: '720px',
                 margin: '30px auto'
             }
-        }
+        } ;
+    }
+
+    render() {
+        console.log(`rerender`) ;
+        const styles = this.getStyles() ;
         const PostList = this.props.post.map((post, index) => {
             return <PostItem key={index} post={post} />
         });
@@ -29,9 +39,11 @@ class Home extends Component {
 }
 
 Home.propTypes = {
-    post: React.PropTypes.array.isRequired
+    post: React.PropTypes.array.isRequired,
+    auth: React.PropTypes.object.isRequired
 }
 
-export default connect( ({ post }) => ({
-    post
-}) , {fetchPosts} )(Home);
+export default connect(({ post, auth }) => ({
+    post,
+    auth
+}), { fetchPosts })(Home);

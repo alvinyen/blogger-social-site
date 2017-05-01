@@ -10,7 +10,9 @@ class Signup extends Component {
     constructor(props){
         super(props);
         this.state = {
-            passwordDiffConfirm: false
+            passwordDiffConfirm: false,
+            containSpaceConfirm: false,
+            lengthNotEnoughConfirm: false
         } ;
     }
     getStyles() {
@@ -52,16 +54,33 @@ class Signup extends Component {
     }
     onSubmit = (e) => {
         e.preventDefault();
-        let username = this.refs.username.getValue();
-        let password = this.refs.password.getValue();
-        let confirmPassword = this.refs.confirmPassword.getValue();
-        if(password !== confirmPassword){
-            console.log('密碼不同...');
-            this.setState({ passwordDiffConfirm:true });
+        this.props.setAuthErrorEmpty();
+        let username = this.refs.username.getValue().trim();
+        let password = this.refs.password.getValue().trim();
+        let confirmPassword = this.refs.confirmPassword.getValue().trim();
+        if( username.match(' ') !== null ||  password.match(' ') !== null ){
+            this.setState({ containSpaceConfirm: true });
+            this.setState({ passwordDiffConfirm: false });
+            this.setState({ lengthNotEnoughConfirm: false });
             return ;
         }
-        this.setState({ passwordDiffConfirm:false });
-        console.log(username,password,confirmPassword);
+        if(username.length<5 || password.length<5){
+            this.setState({ lengthNotEnoughConfirm: true });
+            this.setState({ containSpaceConfirm: false });
+            this.setState({ passwordDiffConfirm: false });
+            return ;
+        }
+        if(password !== confirmPassword){
+            // console.log('密碼不同...');
+            this.setState({ containSpaceConfirm: false });
+            this.setState({ passwordDiffConfirm: true });
+            this.setState({ lengthNotEnoughConfirm: false });
+            return ;
+        }
+        this.setState({ passwordDiffConfirm: false });
+        this.setState({ containSpaceConfirm: false });
+        this.setState({ lengthNotEnoughConfirm: false });
+        // console.log(username,password,confirmPassword);
         this.props.signup({username, password});
     }
     componentWillUnmount(){
@@ -94,7 +113,9 @@ class Signup extends Component {
                         label="註冊" />
                 </form>
                 <div style={{color: 'red'}}>
+                    { this.state.containSpaceConfirm ? '輸入的內容中不能含有空白喔~':'' }
                     { this.state.passwordDiffConfirm ? '2次輸入的密碼不同唷，請重新輸入~':'' }
+                    { this.state.lengthNotEnoughConfirm ? '帳號或密碼不足5位~':'' }
                     { this.props.auth.errorMsg } 
                 </div>
             </div>
