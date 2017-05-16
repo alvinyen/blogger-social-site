@@ -5,7 +5,7 @@ module.exports = {
     devtool: false,
     entry: ['babel-polyfill', './src/main.js'],
     output: {
-        path: path.join(__dirname, './dist/'), // for real deploy bundling
+        path: path.join(__dirname, './public/dist/'), // for real deploy bundling
         publicPath: '/dist',  // for dev only
         filename: 'bundle.js'
     },

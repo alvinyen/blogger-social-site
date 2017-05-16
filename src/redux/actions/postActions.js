@@ -61,7 +61,7 @@ export const getPost = (id) => {
             const responseData = await response.json();
             dispatch({ type: LOAD_POST, post: responseData.post });
         } catch (e) {
-            console.log('error occur when fetchPosts action ', e);
+            console.log('error occur when getPost(id) action ', e);
         }
     }
 }
