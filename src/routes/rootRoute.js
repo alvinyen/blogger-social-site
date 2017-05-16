@@ -3,7 +3,6 @@ import { Router, IndexRoute, Route, browserHistory } from 'react-router';
 import App from './../containers/App.jsx';
 import Signup from './../components/Signup.jsx';
 import Login from './../components/Login.jsx';
-import Test from './../components/Test.jsx';
 import { Provider } from 'react-redux';
 import store from './../redux/store' ;
 import { setCurrentUser } from './../redux/actions/authActions' ;

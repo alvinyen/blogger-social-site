@@ -58,7 +58,7 @@ class Signup extends Component {
         let username = this.refs.username.getValue().trim();
         let password = this.refs.password.getValue().trim();
         let confirmPassword = this.refs.confirmPassword.getValue().trim();
-        if( username.match(' ') !== null ||  password.match(' ') !== null ){
+        if( username.match('[^A-Za-z0-9]') !== null ||  password.match('[^A-Za-z0-9]') !== null ){
             this.setState({ containSpaceConfirm: true });
             this.setState({ passwordDiffConfirm: false });
             this.setState({ lengthNotEnoughConfirm: false });
@@ -113,7 +113,7 @@ class Signup extends Component {
                         label="註冊" />
                 </form>
                 <div style={{color: 'red'}}>
-                    { this.state.containSpaceConfirm ? '輸入的內容中不能含有空白喔~':'' }
+                    { this.state.containSpaceConfirm ? '輸入的內容中不能含有特殊字元或空白喔~':'' }
                     { this.state.passwordDiffConfirm ? '2次輸入的密碼不同唷，請重新輸入~':'' }
                     { this.state.lengthNotEnoughConfirm ? '帳號或密碼不足5位~':'' }
                     { this.props.auth.errorMsg } 
