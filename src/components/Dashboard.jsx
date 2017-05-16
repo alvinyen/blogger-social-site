@@ -3,7 +3,6 @@ import NewPost from './NewPost.jsx';
 import { Link } from 'react-router';
 import RaisedButton from 'material-ui/RaisedButton';
 import { connect } from 'react-redux';
-// import PostList from './../components/PostList.jsx';
 import PostItem from './../components/PostItem.jsx';
 import { fetchPosts } from './../redux/actions/postActions.js';
 

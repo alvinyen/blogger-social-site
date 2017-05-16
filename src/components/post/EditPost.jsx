@@ -4,6 +4,7 @@ import BasicForm from './../BasicForm.jsx';
 import { connect } from 'react-redux';
 import { getPost, clearPost, editPost } from './../../redux/actions/postActions.js';
 import isEmpty from 'lodash/fp/isEmpty';
+import { browserHistory } from 'react-router';
 
 class EditPost extends Component {
     componentWillMount = () => {
@@ -20,9 +21,9 @@ class EditPost extends Component {
         const basic = this.refs.basic.getBasicFormInputValue() ;
         this.props.editPost(basic, this.props.params.post_id);
     }
-
-    
-
+    onReturnButtonClick = (e) => {
+        browserHistory.push('/');
+    }
     getStyles() {
         return {
             root: {
@@ -35,6 +36,8 @@ class EditPost extends Component {
                 fontSize: '1.3em'
             },
             submit: {
+                display: 'flex',
+                justifyContent: 'space-around',
                 textAlign: 'center',
                 marginTop: '32px'
             }
@@ -51,6 +54,12 @@ class EditPost extends Component {
                     { !isEmpty( post_ ) ? <BasicForm ref='basic' post_ ={ post_ } /> : ''}
                     < div style={styles.submit}>
                         <RaisedButton type="submit" label="更新" primary={true} />
+                        <RaisedButton 
+                            onTouchTap={this.onReturnButtonClick}
+                            primary={true} 
+                            style={styles.button} 
+                            labelStyle={styles.label} 
+                            label="返回列表" />
                     </div>
                 </form>
             </div>
