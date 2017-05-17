@@ -26,7 +26,7 @@ export const newPost = (data) => {
             dispatch({ type: ADD_POST, post: responseData.post });
             browserHistory.replace('dashboard');
         } catch (e) {
-            console.log('error occur when newPost action ', e);
+            console.log('catch the error when newPost in postActions：', e);
         }
     }
 };
@@ -53,7 +53,6 @@ export const getPost = (id) => {
             return;
         }
         try {
-            // console.log(`getPost(id): ${postApiAdd}${id}`);
             let response = await fetch(`${postApiAdd}${id}`);
             if (response.status != 200) {
                 throw new Error(`${response.statusText}`);
@@ -98,7 +97,7 @@ export const editPost = (data, id) => {
             browserHistory.push('dashboard');
 
         } catch (e) {
-            console.log('error occur when fetchPosts action ', e);
+            console.log('catch the error when editPost in postActions：', e);
         }
     }
 }
@@ -110,7 +109,6 @@ export const deletePost = (id) => {
     }
     return async (dispatch) => {
         try {
-            // console.log(`getPost(id): ${postApiAdd}${id}`);
             let response = await fetch(`${postApiAdd}${id}`, {
                 method: `delete`,
                 headers: {
@@ -119,7 +117,6 @@ export const deletePost = (id) => {
             });
 
             if (response.status != 200) {
-                console.log(`error in delete post with ${response.status}`);
                 throw new Error(`${response.statusText}`);
             }
 
@@ -127,7 +124,7 @@ export const deletePost = (id) => {
             await dispatch({ type: DELETE_POST, _id: responseData._id });
             browserHistory.push('dashboard');
         } catch (e) {
-            console.log('error occur when fetchPosts action ', e);
+            console.log('catch the error when deletePost in postActions：', e);
         }
     }
 }

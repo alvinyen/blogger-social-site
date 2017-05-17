@@ -18,7 +18,12 @@ class PostItem extends Component {
             },
             content: {
                 padding: '16px 24px 12px',
-                lineHeight: '1.3em'
+                lineHeight: '1.3em' ,
+
+                textAlign: 'center' ,
+                color: '#2e4453',
+                fontWeight: '600',
+                fontSize: '1.2em'
             },
             name: {
                 textAlign: 'center',
@@ -29,17 +34,26 @@ class PostItem extends Component {
             }
         }
     }
+    truncatePostName = (postName) => {
+        if(postName.length>15) {
+            return `${postName.slice(0, 14)}...`;
+        }
+        return postName ;
+    }
     render() {
+        const RadiumLink = Radium(Link) ;
         const styles = this.getStyles();
         const { isAuthenticated, currentUser } = this.props.auth;
+        const postName = this.truncatePostName(this.props.post.name) ;
         return (
             <div style={styles.root}>
-                <div style={styles.content}>
-                    <Link to={`posts/${this.props.post._id}`} >
-                        <div style={styles.name}>
-                            {this.props.post.name}
-                        </div>
-                    </Link>
+                <div style={styles.content} >
+                    <RadiumLink 
+                        to={`posts/${this.props.post._id}`} 
+                        style={{ textDecoration: 'none' , color: '#2e4453', ':hover': {color: '#29b6f6'} }}
+                        activeStyle={{ backgroundColor: 'blue' }} >
+                            {postName}
+                    </RadiumLink>
                 </div>
                 {isAuthenticated && currentUser.admin
                     ? <PostActionList post={this.props.post} /> : ''}

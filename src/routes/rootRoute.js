@@ -3,7 +3,6 @@ import { Router, IndexRoute, Route, browserHistory } from 'react-router';
 import App from './../containers/App.jsx';
 import Signup from './../components/Signup.jsx';
 import Login from './../components/Login.jsx';
-import Test from './../components/Test.jsx';
 import { Provider } from 'react-redux';
 import store from './../redux/store' ;
 import { setCurrentUser } from './../redux/actions/authActions' ;
@@ -19,7 +18,6 @@ if(sessionStorage.jwtToken){
 }
 
 const isAdmin = () => {
-    // console.log('isadmin in rootRoute.js') ;
     if(!sessionStorage.getItem('jwtToken') && !sessionStorage.getItem('user') ){
         return false ;
     }
@@ -28,7 +26,6 @@ const isAdmin = () => {
 }
 
 const requireAuth = (nextState, replace) => {
-    // console.log('require auth in rootRoute.js') ;
     if(!isAdmin()){
         replace('/login');
     }

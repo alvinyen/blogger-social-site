@@ -10,7 +10,8 @@ class Login extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            noValueConfirm: false,
+            containSpaceConfirm: false,
+            lengthNotEnoughConfirm: false,
             clearErrorMsg: false
         };
     }
@@ -59,27 +60,18 @@ class Login extends Component {
         this.props.setAuthErrorEmpty();
         let username = this.refs.username.getValue().trim();
         let password = this.refs.password.getValue().trim();
-        if (username.length === 0 || password.length === 0) {
-            this.setState({ noValueConfirm: true });
-            return;
-        } else {
-            this.setState({ noValueConfirm: false });
+        if( username.match('[^A-Za-z0-9]') !== null ||  password.match('[^A-Za-z0-9]') !== null ){
+            this.setState({ containSpaceConfirm: true });
+            this.setState({ lengthNotEnoughConfirm: false });
+            return ;
         }
-        // console.log({ username, password });
-        // const data = { username, password };
-        // try {
-        //     let response = await fetch( loginApiAdd, {
-        //         method: `post`,
-        //         headers: {
-        //             "Content-Type": `application/json`
-        //         },
-        //         body: JSON.stringify(data)
-        //     });
-        //     let data = await response.json();
-        //     console.log(data);
-        // } catch (e) {
-        //     console.log("error...", e);
-        // }
+        if(username.length<5 || password.length<5){
+            this.setState({ lengthNotEnoughConfirm: true });
+            this.setState({ containSpaceConfirm: false });
+            return ;
+        }
+        this.setState({ containSpaceConfirm: false });
+        this.setState({ lengthNotEnoughConfirm: false });
         this.props.login({ username, password });
     }
     render() {
@@ -91,10 +83,11 @@ class Login extends Component {
                     <TextField style={styles.textField} floatingLabelText="密碼" type="password" ref="password" />
                     <RaisedButton primary={true} style={styles.button} labelStyle={styles.label} type="submit" label="登入" />
                 </form>
-                <div style={{ color: 'red' }}>
-                    {this.state.noValueConfirm ? '欄位內容不可為空唷~' : ''}
+                <div style={{color: 'red'}}>
+                    { this.state.containSpaceConfirm ? '輸入的內容中不能含有特殊字元或空白喔~':'' }
+                    { this.state.lengthNotEnoughConfirm ? '帳號或密碼不足5位~':'' }
+                    { this.props.auth.errorMsg } 
                 </div>
-                {<div style={{ color: "red" }} > {this.props.auth.errorMsg} </div>}
             </div>
         );
     }
