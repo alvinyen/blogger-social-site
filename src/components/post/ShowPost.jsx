@@ -5,7 +5,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import { browserHistory } from 'react-router';
 
 class ShowPost extends Component {
-    componentWillMount = () => {               // 因為跟react-router連結所以可以拿到post_id ??
+    componentWillMount = () => {               // params is from the setting of react router
         this.props.getPost( this.props.params.post_id );
     }
     componentWillUnmount = () => {
@@ -46,7 +46,6 @@ class ShowPost extends Component {
     render() {
         const styles = this.getStyles() ; 
         const { post_ } = this.props ;
-        console.log(typeof post_);
         return (
             <div style={styles.container}>
                 <div style={styles.name}>{post_.name}</div>

@@ -71,7 +71,6 @@ class Signup extends Component {
             return ;
         }
         if(password !== confirmPassword){
-            // console.log('密碼不同...');
             this.setState({ containSpaceConfirm: false });
             this.setState({ passwordDiffConfirm: true });
             this.setState({ lengthNotEnoughConfirm: false });
@@ -80,7 +79,6 @@ class Signup extends Component {
         this.setState({ passwordDiffConfirm: false });
         this.setState({ containSpaceConfirm: false });
         this.setState({ lengthNotEnoughConfirm: false });
-        // console.log(username,password,confirmPassword);
         this.props.signup({username, password});
     }
     componentWillUnmount(){

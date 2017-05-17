@@ -41,17 +41,14 @@ export default function login(data) {
                 throw new Error(`${response.statusText}`);
             }
             const responseData = await response.json();
-            // console.log(responseData);
             const token = responseData.token;
             const user = responseData.user;
             sessionStorage.setItem('jwtToken', token);
             sessionStorage.setItem('user', JSON.stringify(user));
             dispatch(setCurrentUser(user));
             user.admin ? browserHistory.push('dashboard') : browserHistory.push('/'); 
-            console.log('yo..登入成功!!');
         } catch (e) {
-            console.log("error...", e);
-            console.log("用戶不存在或密碼無效，請重新輸入帳密~~");
+            console.log("catch the error when login in authActions：", e);
             dispatch(setAuthErrorAction('用戶不存在或密碼無效，請重新輸入帳密~~'));
         }
     }
@@ -76,11 +73,7 @@ export function signup(data) {
                 },
                 body: JSON.stringify(data)
             });
-            console.log(await response);
             if (response.status != 200) {
-                // console.log(response.status);
-                // console.log(response);
-                // console.log(await response.json().errorMsg);
                 throw new Error(`${response.statusText}`);
             }
             const responseData = await response.json();
@@ -90,9 +83,8 @@ export function signup(data) {
             sessionStorage.setItem('user', JSON.stringify(user));
             dispatch(setCurrentUser(user));
             browserHistory.push('/');
-            console.log('註冊成功!!', token, user);
         } catch (e) {
-            console.log("error...", e);
+            console.log("catch the error when signup in authActions：", e);
             dispatch(setAuthErrorAction('User already exist!!!'));
         }
     }

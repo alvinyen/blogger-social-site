@@ -18,7 +18,6 @@ if(sessionStorage.jwtToken){
 }
 
 const isAdmin = () => {
-    // console.log('isadmin in rootRoute.js') ;
     if(!sessionStorage.getItem('jwtToken') && !sessionStorage.getItem('user') ){
         return false ;
     }
@@ -27,7 +26,6 @@ const isAdmin = () => {
 }
 
 const requireAuth = (nextState, replace) => {
-    // console.log('require auth in rootRoute.js') ;
     if(!isAdmin()){
         replace('/login');
     }

@@ -14,9 +14,7 @@ export default function auth(state = initialState, action = {}){
                 isAuthenticated: !isEmpty(action.user),
                 currentUser: action.user
             } ;
-            // { isAuthenticated true, currentUser: {name: alvinnnn} }
         case AUTH_ERROR:
-            console.log(action.errorMsg);
             return {
                 isAuthenticated: false,
                 currentUser: {},

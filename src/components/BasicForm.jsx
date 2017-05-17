@@ -25,7 +25,6 @@ class BasicForm extends Component {
     render() {
         const styles = this.getStyles() ;
         const { post_ } = this.props ;
-        console.log( `post_: ${post_}` ) ;
         return (
             <div style={styles.root}>
                 <TextField

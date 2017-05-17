@@ -8,8 +8,7 @@ import { browserHistory } from 'react-router';
 
 class EditPost extends Component {
     componentWillMount = () => {
-        console.log(`params`);
-        console.log(this.props.params);
+                                // params is from the setting of react router
         this.props.getPost(this.props.params.post_id);
     }
     componentWillUnmount = () => {

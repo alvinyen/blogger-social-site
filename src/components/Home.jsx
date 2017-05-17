@@ -6,7 +6,6 @@ import { browserHistory } from 'react-router';
 
 class Home extends Component {
     componentWillMount() {
-        console.log(this.props.auth.currentUser.admin);
         if( this.props.auth.currentUser.admin ){
             browserHistory.push('dashboard') ;
         }
@@ -25,7 +24,6 @@ class Home extends Component {
     }
 
     render() {
-        console.log(`rerender`) ;
         const styles = this.getStyles() ;
         const PostList = this.props.post.map((post, index) => {
             return <PostItem key={index} post={post} />
