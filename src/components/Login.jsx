@@ -85,7 +85,7 @@ class Login extends Component {
                 </form>
                 <div style={{color: 'red'}}>
                     { this.state.containSpaceConfirm ? '輸入的內容中不能含有特殊字元或空白喔~':'' }
-                    { this.state.lengthNotEnoughConfirm ? '帳號或密碼不足5位~':'' }
+                    { this.state.lengthNotEnoughConfirm ? '請輸入正確的帳號密碼~':'' }
                     { this.props.auth.errorMsg } 
                 </div>
             </div>

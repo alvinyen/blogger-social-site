@@ -49,7 +49,7 @@ export default function login(data) {
             user.admin ? browserHistory.push('dashboard') : browserHistory.push('/'); 
         } catch (e) {
             console.log("catch the error when login in authActions：", e);
-            dispatch(setAuthErrorAction('用戶不存在或密碼無效，請重新輸入帳密~~'));
+            dispatch(setAuthErrorAction('請輸入正確的帳號密碼~'));
         }
     }
 }
