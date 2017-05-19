@@ -15,18 +15,13 @@ module.exports = {
             'process.env': {
                 'NODE_ENV': JSON.stringify('production')
             }
-        }),
-        new webpack.optimize.UglifyJsPlugin({
-            compressor: {
-                warnings: false
-            }
         })
     ],
     module: {
         loaders: [
             {
                 test: /\.(js|jsx)$/,
-                loaders: ['babel-loader'],
+                loader: 'babel-loader',
                 include: path.join(__dirname, '/src')
             },
             { 
