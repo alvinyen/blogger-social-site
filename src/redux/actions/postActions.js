@@ -4,7 +4,7 @@ export const LOAD_POST = 'LOAD_POST';
 export const CLEAR_POST = 'CLEAR_POST';
 export const EDIT_POST = 'EDIT_POST';
 export const DELETE_POST = 'DELETE_POST';
-import { newPostApiAdd, postApiAdd } from './../../config/config';
+import { newPostApiAdd, postApiAdd } from '../../../../config/blogger-social-site/config';
 import { browserHistory } from 'react-router';
 
 export const newPost = (data) => {

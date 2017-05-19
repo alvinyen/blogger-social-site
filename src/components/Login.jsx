@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import Radium from 'radium';
-import { loginApiAdd } from './../config/config.js';
+import { loginApiAdd } from './../../../config/blogger-social-site/config.js';
 import { connect } from 'react-redux';
 import login, { setAuthErrorEmpty } from './../redux/actions/authActions.js';
 

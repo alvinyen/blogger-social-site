@@ -2,7 +2,7 @@
 export const SET_AUTH_ERROR_MSG_EMPTY = 'SET_AUTH_ERROR_MSG_EMPTY' ;
 export const AUTH_USER = 'AUTH_USER';
 export const AUTH_ERROR = 'AUTH_ERROR';
-import { loginApiAdd, signupApiAdd } from './../../config/config';
+import { loginApiAdd, signupApiAdd } from '../../../../config/blogger-social-site/config';
 import { browserHistory } from 'react-router';
 
 export function setCurrentUser(user) {
