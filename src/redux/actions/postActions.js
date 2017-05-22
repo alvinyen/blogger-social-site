@@ -6,6 +6,7 @@ export const EDIT_POST = 'EDIT_POST';
 export const DELETE_POST = 'DELETE_POST';
 import { newPostApiAdd, postApiAdd } from '../../../../config/blogger-social-site/config';
 import { browserHistory } from 'react-router';
+const devTest = false ;
 
 export const newPost = (data) => {
     return async (dispatch) => {
@@ -26,7 +27,8 @@ export const newPost = (data) => {
             dispatch({ type: ADD_POST, post: responseData.post });
             browserHistory.replace('dashboard');
         } catch (e) {
-            console.log('catch the error when newPost in postActions：', e);
+            if(devTest)
+                console.log('catch the error when newPost in postActions：', e);
         }
     }
 };
@@ -41,7 +43,8 @@ export const fetchPosts = () => {
             const responseData = await response.json();
             dispatch({ type: LOAD_POSTS, posts: responseData.posts });
         } catch (e) {
-            console.log('error occur when fetchPosts action ', e);
+            if(devTest)
+                console.log('error occur when fetchPosts action ', e);
         }
     }
 }
@@ -49,7 +52,8 @@ export const fetchPosts = () => {
 export const getPost = (id) => {
     return async (dispatch) => {
         if (id === undefined || id === 'undefined') {
-            console.log(`getPost action: id undefined`);
+            if(devTest)
+                console.log(`getPost action: id undefined`);
             return;
         }
         try {
@@ -60,7 +64,8 @@ export const getPost = (id) => {
             const responseData = await response.json();
             dispatch({ type: LOAD_POST, post: responseData.post });
         } catch (e) {
-            console.log('error occur when getPost(id) action ', e);
+            if(devTest)
+                console.log('error occur when getPost(id) action ', e);
         }
     }
 }
@@ -74,7 +79,8 @@ export const editPost = (data, id) => {
     };
     return async (dispatch) => {
         if (id === undefined || id === 'undefined') {
-            console.log(`editPost action: id undefined`);
+            if(devTest)
+                console.log(`editPost action: id undefined`);
             return;
         }
         try {
@@ -97,14 +103,16 @@ export const editPost = (data, id) => {
             browserHistory.push('dashboard');
 
         } catch (e) {
-            console.log('catch the error when editPost in postActions：', e);
+            if(devTest)
+                console.log('catch the error when editPost in postActions：', e);
         }
     }
 }
 
 export const deletePost = (id) => {
     if (id === undefined || id === 'undefined') {
-        console.log(`deletePost action: id undefined`);
+        if(devTest)
+            console.log(`deletePost action: id undefined`);
         return;
     }
     return async (dispatch) => {
@@ -124,7 +132,8 @@ export const deletePost = (id) => {
             await dispatch({ type: DELETE_POST, _id: responseData._id });
             browserHistory.push('dashboard');
         } catch (e) {
-            console.log('catch the error when deletePost in postActions：', e);
+            if(devTest)
+                console.log('catch the error when deletePost in postActions：', e);
         }
     }
 }
