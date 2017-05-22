@@ -18,11 +18,17 @@ class App extends Component {
         return (
             <StyleRoot>
             <MuiThemeProvider>
-                <div>
+                <div style={{ "min-width": "780px" } }>
                     <Header />
-                    <div style={styles.content}>
-                    {this.props.children}
-                    </div>
+                    {
+                        isAdmin() ? 
+                            (<div style={styles.adminContent}>
+                                {this.props.children}
+                            </div>) : 
+                            (<div style={styles.content}>
+                                {this.props.children}
+                            </div>)
+                    }
                 </div>
             </MuiThemeProvider>
             </StyleRoot>
@@ -34,6 +40,9 @@ export default connect(null)(Radium(App));
 
 const styles = {
     content: {
-        marginTop: "10%"
+        marginTop: "120px"
+    } ,
+    adminContent: {
+        marginTop: "90px"
     }
 }

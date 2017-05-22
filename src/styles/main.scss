@@ -8,6 +8,7 @@
 }
 html,body{
     width: 100%;
+    min-width: 780px;
     // height: 100%;
     margin: 0px;
     padding: 0px;
@@ -44,6 +45,9 @@ html,body{
     &::after{
         clear: both;
     }
+}
+.minWidth {
+    min-width: 780px;
 }
 .display-inline{
     display: inline-block;

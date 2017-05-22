@@ -30,6 +30,7 @@ class ShowPost extends Component {
 
             container: {
                 maxWidth: '960px',
+                minWidth: '780px',
                 margin: '56px auto 0'
             },
             name: {
