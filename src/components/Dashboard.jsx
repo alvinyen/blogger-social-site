@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import NewPost from './NewPost.jsx';
+import NewPost from './post/NewPost.jsx';
 import { Link } from 'react-router';
 import RaisedButton from 'material-ui/RaisedButton';
 import { connect } from 'react-redux';
-import PostItem from './../components/PostItem.jsx';
+import PostItem from './post/PostItem.jsx';
 import { fetchPosts } from './../redux/actions/postActions.js';
 
 class Dashboard extends Component {

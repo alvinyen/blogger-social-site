@@ -1,14 +1,14 @@
 import React from 'react';
 import { Router, IndexRoute, Route, browserHistory } from 'react-router';
 import App from './../containers/App.jsx';
-import Signup from './../components/Signup.jsx';
-import Login from './../components/Login.jsx';
+import Signup from './../components/auth/Signup.jsx';
+import Login from './../components/auth/Login.jsx';
 import { Provider } from 'react-redux';
 import store from './../redux/store' ;
 import { setCurrentUser } from './../redux/actions/authActions' ;
 import Home from './../components/Home.jsx' ;
 import Dashboard from './../components/Dashboard.jsx' ;
-import NewPost from './../components/NewPost.jsx' ;
+import NewPost from './../components/post/NewPost.jsx' ;
 import ShowPost from './../components/post/ShowPost.jsx' ;
 import EditPost from './../components/post/EditPost.jsx' ;
 

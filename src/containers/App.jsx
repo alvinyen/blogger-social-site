@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Header from './Header.jsx';
-import Login from '../components/Login.jsx';
-import Signup from '../components/Signup.jsx';
+import Login from '../components/auth/Login.jsx';
+import Signup from '../components/auth/Signup.jsx';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Radium, { StyleRoot } from 'radium';
 

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
-import BasicForm from './BasicForm.jsx';
+import BasicForm from '../BasicForm.jsx';
 import { connect } from 'react-redux' ;
-import { newPost } from './../redux/actions/postActions.js' ;
+import { newPost } from '../../redux/actions/postActions.js' ;
 
 class NewPost extends Component {
     getStyles() {

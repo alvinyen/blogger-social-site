@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import PostItem from './PostItem.jsx';
+import PostItem from './post/PostItem.jsx';
 import { fetchPosts } from './../redux/actions/postActions.js';
 import { browserHistory } from 'react-router';
 

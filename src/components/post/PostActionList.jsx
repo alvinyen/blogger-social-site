@@ -5,7 +5,7 @@ import EditorModeEdit from 'material-ui/svg-icons/editor/mode-edit';
 import ActionDelete from 'material-ui/svg-icons/action/delete';
 import Radium from 'radium';
 import { connect } from 'react-redux' ;
-import { deletePost } from './../redux/actions/postActions.js' ;
+import { deletePost } from '../../redux/actions/postActions.js' ;
 
 class PostActionList extends Component {
     getStyles() {
