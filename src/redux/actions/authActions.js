@@ -4,6 +4,7 @@ export const AUTH_USER = 'AUTH_USER';
 export const AUTH_ERROR = 'AUTH_ERROR';
 import { loginApiAdd, signupApiAdd } from '../../../../config/blogger-social-site/config';
 import { browserHistory } from 'react-router';
+const devTest = false ;
 
 export function setCurrentUser(user) {
     return {
