@@ -16,6 +16,7 @@ class Header extends Component {
     }
     render() {
         const { isAuthenticated, currentUser } = this.props.auth;
+        const displayAnnounceBox = this.props.announce;
 
         const LoginLink = (
             <span>
@@ -26,17 +27,18 @@ class Header extends Component {
 
         const LogoutLink = (
             <span>
-                <span style={{ color: 'rgb(255, 226, 0)', paddingRight: '15px' }} className="signup">{currentUser.name}</span>
-                <Link to='/' style={styles.nav} className="login" onClick={this.logout}>登出</Link>
+                <span style={{ color: 'rgb(255, 226, 0)', paddingRight: '15px' }} className="signup">welcome～ {currentUser.name}</span>
+                <Link to='/' style={styles.nav} className="login" onClick={this.logout} >登出</Link>
             </span>
         );
 
         return (
             <div className="header">
-                <AnnouncementBox className="clearfix" />
-                {/*<a style={styles.nav} key='1'>aaaa</a>*/}
+                { displayAnnounceBox ?
+                 <AnnouncementBox /> : '' }
                 { currentUser.admin ? 
-                    '' : <Link to='/'><ActionHome color='#fff' style={styles.actionHome} /></Link> }
+                    <ActionHome color="rgb(0, 188, 212)" style={styles.actionHome} /> : 
+                    <Link to='/'><ActionHome color='#fff' style={styles.actionHome} /></Link> }
                 {isAuthenticated ? LogoutLink : LoginLink}
             </div>
         );
@@ -77,10 +79,14 @@ const styles = {
         width: 40,
         marginLeft: 10,
         marginTop: 10
+    },
+    hasLoggedIn: {
+        marginTop: 60
     }
 };
 
-export default connect(({ auth }) => ({
-    auth
+export default connect(({ auth, announce }) => ({
+    auth,
+    announce
 }), { logout })(Radium(Header));
 

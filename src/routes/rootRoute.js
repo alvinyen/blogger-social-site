@@ -17,7 +17,7 @@ if(sessionStorage.jwtToken){
     store.dispatch(setCurrentUser(user));
 }
 
-const isAdmin = () => {
+export const isAdmin = () => {
     if(!sessionStorage.getItem('jwtToken') && !sessionStorage.getItem('user') ){
         return false ;
     }

@@ -2,9 +2,17 @@
 export const SET_AUTH_ERROR_MSG_EMPTY = 'SET_AUTH_ERROR_MSG_EMPTY' ;
 export const AUTH_USER = 'AUTH_USER';
 export const AUTH_ERROR = 'AUTH_ERROR';
+export const SET_ANNOUNCE_DISPLAY = 'SET_ANNOUNCE_DISPLAY';
 import { loginApiAdd, signupApiAdd } from '../../../../config/blogger-social-site/config';
 import { browserHistory } from 'react-router';
 const devTest = false ;
+
+export function setAnnounceDisplay(type, displayAnnounceBox){
+    return {
+        type,
+        displayAnnounceBox
+    };
+}
 
 export function setCurrentUser(user) {
     return {
@@ -47,6 +55,7 @@ export default function login(data) {
             sessionStorage.setItem('jwtToken', token);
             sessionStorage.setItem('user', JSON.stringify(user));
             dispatch(setCurrentUser(user));
+            dispatch(setAnnounceDisplay(SET_ANNOUNCE_DISPLAY, false));
             user.admin ? browserHistory.push('dashboard') : browserHistory.push('/'); 
         } catch (e) {
             if(devTest){
@@ -62,6 +71,7 @@ export function logout() {
         sessionStorage.removeItem('jwtToken');
         sessionStorage.removeItem('user');
         dispatch(setCurrentUser({}));
+        dispatch(setAnnounceDisplay(SET_ANNOUNCE_DISPLAY, true));
         browserHistory.push('/');
     }
 }
@@ -85,6 +95,7 @@ export function signup(data) {
             sessionStorage.setItem('jwtToken', token);
             sessionStorage.setItem('user', JSON.stringify(user));
             dispatch(setCurrentUser(user));
+            dispatch(setAnnounceDisplay(SET_ANNOUNCE_DISPLAY, false));
             browserHistory.push('/');
         } catch (e) {
             if(devTest){
