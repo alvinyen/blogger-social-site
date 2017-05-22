@@ -28,6 +28,7 @@ class EditPost extends Component {
             root: {
                 maxWidth: '720px',
                 margin: '32px auto 0',
+                padding: '0 30px'
             },
             title: {
                 textAlign: 'center',
@@ -57,7 +58,6 @@ class EditPost extends Component {
                             onTouchTap={this.onReturnButtonClick}
                             primary={true} 
                             style={styles.button} 
-                            labelStyle={styles.label} 
                             label="返回列表" />
                     </div>
                 </form>

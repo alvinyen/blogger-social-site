@@ -95,7 +95,6 @@ export function signup(data) {
             sessionStorage.setItem('jwtToken', token);
             sessionStorage.setItem('user', JSON.stringify(user));
             dispatch(setCurrentUser(user));
-            dispatch(setAnnounceDisplay(SET_ANNOUNCE_DISPLAY, false));
             browserHistory.push('/');
         } catch (e) {
             if(devTest){

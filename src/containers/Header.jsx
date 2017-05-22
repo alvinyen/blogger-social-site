@@ -33,7 +33,7 @@ class Header extends Component {
         );
 
         return (
-            <div className="header minWidth">
+            <div className="header" style={{minWidth: '400px'}}>
                 { displayAnnounceBox ?
                  <AnnouncementBox /> : '' }
                 { currentUser.admin ? 

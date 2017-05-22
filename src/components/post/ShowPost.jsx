@@ -29,8 +29,9 @@ class ShowPost extends Component {
             },
 
             container: {
+                padding: '30px',
                 maxWidth: '960px',
-                minWidth: '780px',
+                minWidth: '400px',
                 margin: '56px auto 0'
             },
             name: {

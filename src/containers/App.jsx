@@ -18,7 +18,7 @@ class App extends Component {
         return (
             <StyleRoot>
             <MuiThemeProvider>
-                <div style={{ "min-width": "780px" } }>
+                <div>
                     <Header />
                     {
                         isAdmin() ? 
