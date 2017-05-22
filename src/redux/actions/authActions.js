@@ -49,8 +49,9 @@ export default function login(data) {
             dispatch(setCurrentUser(user));
             user.admin ? browserHistory.push('dashboard') : browserHistory.push('/'); 
         } catch (e) {
-            if(devTest)
+            if(devTest){
                 console.log("catch the error when login in authActions：", e);
+            }
             dispatch(setAuthErrorAction('請輸入正確的帳號密碼~'));
         }
     }
@@ -86,8 +87,10 @@ export function signup(data) {
             dispatch(setCurrentUser(user));
             browserHistory.push('/');
         } catch (e) {
-            if(devTest)
+            console.log(devTest);
+            if(devTest){
                 console.log("catch the error when signup in authActions：", e);
+            }
             dispatch(setAuthErrorAction('User already exist!!!'));
         }
     }
