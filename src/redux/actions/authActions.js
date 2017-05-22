@@ -87,7 +87,6 @@ export function signup(data) {
             dispatch(setCurrentUser(user));
             browserHistory.push('/');
         } catch (e) {
-            console.log(devTest);
             if(devTest){
                 console.log("catch the error when signup in authActions：", e);
             }
