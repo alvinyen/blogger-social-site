@@ -6,6 +6,7 @@ import Radium from 'radium';
 import ActionHome from 'material-ui/svg-icons/action/home';
 import { connect } from 'react-redux';
 import { logout } from './../redux/actions/authActions.js';
+import AnnouncementBox from './../components/AnnouncementBox.jsx' ;
 
 
 class Header extends Component {
@@ -32,6 +33,7 @@ class Header extends Component {
 
         return (
             <div className="header">
+                <AnnouncementBox className="clearfix" />
                 {/*<a style={styles.nav} key='1'>aaaa</a>*/}
                 { currentUser.admin ? 
                     '' : <Link to='/'><ActionHome color='#fff' style={styles.actionHome} /></Link> }

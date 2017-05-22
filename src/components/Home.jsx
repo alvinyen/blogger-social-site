@@ -29,8 +29,10 @@ class Home extends Component {
             return <PostItem key={index} post={post} />
         });
         return (
-            <div style={styles.root}>
-                {PostList}
+            <div>
+                <div style={styles.root}>
+                    {PostList}
+                </div>
             </div>
         );
     }

@@ -31,13 +31,15 @@ class Dashboard extends Component {
         });
         const styles = this.getStyles() ; 
         return (
-            <div style={styles.root}>
-                <div style={styles.actions}>
-                    <Link to='posts/new'>
-                        <RaisedButton label="添加新文章" primary={true} />
-                    </Link>
+            <div>
+                <div style={styles.root}>
+                    <div style={styles.actions}>
+                        <Link to='posts/new'>
+                            <RaisedButton label="添加新文章" primary={true} />
+                        </Link>
+                    </div>
+                    {PostList}
                 </div>
-                {PostList}
             </div>
         );
     }
