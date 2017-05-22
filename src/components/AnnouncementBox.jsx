@@ -9,7 +9,8 @@ const getStyles = () => ({
         background: 'red',
         textAlign: 'center',
         color: 'white',
-        minWidth: '780px'
+        minWidth: '400px',
+        overflow: 'hidden'
     }
 }) ;
 
