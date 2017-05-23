@@ -1,7 +1,7 @@
 # Blog Social Site
 
 ## 專案說明
-應用React、React Router、Material-UI、Redux所完成的部落格系統，具登入機制、驗證及授權、管理員增刪改文章等相關功能。另外，也使用SASS及Radium來完成樣式的微調，最後使用Webpack來完成構建， 並使用Nginx搭配pm2部署於Digital Ocean：[www.alvinyen.me](www.alvinyen.me)。
+應用React、React Router、Material-UI、Redux所完成的部落格系統，具登入機制、驗證及授權、管理員增刪改文章等相關功能。另外，也使用SASS及Radium來完成樣式的微調，最後使用Webpack來完成構建， 並使用Nginx搭配pm2部署於Digital Ocean：www.alvinyen.me。
 
 ## To Do
 - 整合Jest/Enzyme完成測試。
