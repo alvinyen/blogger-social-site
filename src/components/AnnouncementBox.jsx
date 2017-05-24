@@ -18,7 +18,7 @@ const AnnouncementBox = (props) => {
     const styles = getStyles() ;
     return(
         <div style={styles.announcementBox}>
-            請使用帳號alvinyen及密碼cestlavi登入系統，以測試管理員才有的增刪改查功能
+            請使用帳號alvinyen及密碼cestlavi登入系統，以測試管理員才有的增刪改等功能
         </div>
     );
 } ;
