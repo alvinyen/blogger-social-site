@@ -1,12 +1,12 @@
 import { LOAD_POST, CLEAR_POST } from './../actions/postActions';
 
-export default ( state={}, action={} ) => {
-    switch(action.type){
+export default (state = {}, action = {}) => {
+    switch (action.type) {
         case LOAD_POST:
-            return action.post ;
+            return action.post;
         case CLEAR_POST:
-            return {} ;
+            return {};
         default:
-            return state ;
+            return state;
     }
-}
+};

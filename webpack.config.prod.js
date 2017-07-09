@@ -3,7 +3,7 @@ var webpack = require('webpack');
 
 module.exports = {
     devtool: false,
-    entry: ['babel-polyfill', './src/main.js'],
+    entry: ['babel-polyfill', './src/main.js'], // for runtime (global api、some methods)
     output: {
         path: path.join(__dirname, './public/dist/'), // for real deploy bundling
         publicPath: '/dist',  // for dev only

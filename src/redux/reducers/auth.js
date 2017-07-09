@@ -1,19 +1,19 @@
-import isEmpty from 'lodash/fp/isEmpty' ;
-import { AUTH_USER, AUTH_ERROR, SET_AUTH_ERROR_MSG_EMPTY } from './../actions/authActions' ;
+import isEmpty from 'lodash/fp/isEmpty';
+import { AUTH_USER, AUTH_ERROR, SET_AUTH_ERROR_MSG_EMPTY } from './../actions/authActions';
 
 const initialState = {
     isAuthenticated: false,
     currentUser: {},
     errorMsg: ''
-} ;
+};
 
-export default function auth(state = initialState, action = {}){
-    switch(action.type){
+export default function auth(state = initialState, action = {}) {
+    switch (action.type) {
         case AUTH_USER:
             return {
                 isAuthenticated: !isEmpty(action.user),
                 currentUser: action.user
-            } ;
+            };
         case AUTH_ERROR:
             return {
                 isAuthenticated: false,
@@ -22,10 +22,10 @@ export default function auth(state = initialState, action = {}){
             };
         case SET_AUTH_ERROR_MSG_EMPTY:
             return {
-                ...state ,
+                ...state,
                 errorMsg: ''
             };
         default:
-            return state ;
+            return state;
     }
 }
