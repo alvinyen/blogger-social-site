@@ -52,7 +52,7 @@ class ShowPost extends Component {
         return (
             <div style={styles.container}>
                 <div style={styles.name}>{post_.name}</div>
-                { Object.keys(post_).length !== 0 ? post_.content.split(/\r\n|[\r\n]/).map((content, index)=>(<p key={index} style={styles.content}>{content}</p>)) : '' }
+                { Object.keys(post_).length !== 0 ? post_.content.split(/\r\n|[\r\n]/).map((content, index)=>(<span key={index} style={styles.content}>{content}<br/></span>)) : '' }
                 <RaisedButton 
                     onTouchTap={this.onClick}
                     primary={true} 

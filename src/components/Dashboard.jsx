@@ -25,11 +25,11 @@ class Dashboard extends Component {
         };
     }
 
-    render() {
-        const PostList = this.props.post.map((post, index) => {
-            return <PostItem key={post._id} post={post} />
+    render() {                   // posts array
+        const PostList = this.props.post.map((post) => {
+            return <PostItem key={post._id} post={post} />;
         });
-        const styles = this.getStyles() ; 
+        const styles = this.getStyles(); 
         return (
             <div>
                 <div style={styles.root}>

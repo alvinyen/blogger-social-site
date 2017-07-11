@@ -1,6 +1,9 @@
 import { browserHistory } from 'react-router';
 import { newPostApiAdd, postApiAdd } from '../../../../config/blogger-social-site/config';
 
+// console.log(newPostApiAdd);
+// console.log(postApiAdd);
+
 export const ADD_POST = 'ADD_POST';
 export const LOAD_POSTS = 'LOAD_POSTS';
 export const LOAD_POST = 'LOAD_POST';

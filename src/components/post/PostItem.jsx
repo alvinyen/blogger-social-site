@@ -44,7 +44,7 @@ class PostItem extends Component {
         const RadiumLink = Radium(Link);
         const styles = this.getStyles();
         const { isAuthenticated, currentUser } = this.props.auth;
-        const postName = this.truncatePostName(this.props.post.name) ;
+        const postName = this.truncatePostName(this.props.post.name);
         return (
             <div style={styles.root}>
                 <div style={styles.content} >
