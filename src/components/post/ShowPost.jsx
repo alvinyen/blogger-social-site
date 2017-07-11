@@ -45,13 +45,14 @@ class ShowPost extends Component {
             }
         };
     }
+    
     render() {
-        const styles = this.getStyles() ; 
-        const { post_ } = this.props ;
+        const styles = this.getStyles(); 
+        const { post_ } = this.props;
         return (
             <div style={styles.container}>
                 <div style={styles.name}>{post_.name}</div>
-                <div style={styles.content}>{post_.content}</div>
+                { Object.keys(post_).length !== 0 ? post_.content.split(/\r\n|[\r\n]/).map((content, index)=>(<p key={index} style={styles.content}>{content}</p>)) : '' }
                 <RaisedButton 
                     onTouchTap={this.onClick}
                     primary={true} 
