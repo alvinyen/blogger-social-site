@@ -4,8 +4,8 @@ import EditorModeEdit from 'material-ui/svg-icons/editor/mode-edit';
 // import ActionLaunch from 'material-ui/svg-icons/action/launch' ;
 import ActionDelete from 'material-ui/svg-icons/action/delete';
 import Radium from 'radium';
-import { connect } from 'react-redux' ;
-import { deletePost } from '../../redux/actions/postActions.js' ;
+import { connect } from 'react-redux';
+import { deletePost } from '../../redux/actions/postActions.js';
 
 class PostActionList extends Component {
     getStyles() {
@@ -41,21 +41,22 @@ class PostActionList extends Component {
         }
     }
     handleClick = () => {
-        this.props.deletePost(this.props.post._id) ;
+        console.log();
+        this.props.deletePost(this.props.post._id);
     }
     render() {
-        const styles =this.getStyles() ;
+        const styles = this.getStyles();
         return (
-            <div style={ styles.actionsss }>
-                <div style={ [styles.action, {borderLeft: 'none'}] }>
+            <div style={styles.actionsss}>
+                <div style={[styles.action, { borderLeft: 'none' }]}>
                     <Link to={`/posts/${this.props.post._id}/edit`} style={styles.a}>
-                        <EditorModeEdit color='#668eaa' style={ styles.svg } />
+                        <EditorModeEdit color='#668eaa' style={styles.svg} />
                         <span>編輯</span>
                     </Link>
                 </div>
-                <div style={ [styles.action, {borderLeft: 'none'}] } onClick={this.handleClick} >
-                    <Link to='dashboard' style={ styles.a }>
-                        <ActionDelete color='#668eaa' style={ styles.svg } />
+                <div style={[styles.action, { borderLeft: 'none' }]} onClick={this.handleClick} >
+                    <Link to='dashboard' style={styles.a}>
+                        <ActionDelete color='#668eaa' style={styles.svg} />
                         <span>刪除</span>
                     </Link>
                 </div>
@@ -64,4 +65,4 @@ class PostActionList extends Component {
     }
 }
 
-export default connect(null, { deletePost } )(Radium(PostActionList));
+export default connect(null, { deletePost })(Radium(PostActionList));

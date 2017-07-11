@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router';
 import Radium from 'radium';
 import PostActionList from './PostActionList.jsx';
-import { connect } from 'react-redux';
-import { Link } from 'react-router'
 
 class PostItem extends Component {
     getStyles() {
@@ -35,13 +35,13 @@ class PostItem extends Component {
         }
     }
     truncatePostName = (postName) => {
-        if(postName.length>15) {
+        if (postName.length > 15) {
             return `${postName.slice(0, 14)}...`;
         }
-        return postName ;
+        return postName;
     }
     render() {
-        const RadiumLink = Radium(Link) ;
+        const RadiumLink = Radium(Link);
         const styles = this.getStyles();
         const { isAuthenticated, currentUser } = this.props.auth;
         const postName = this.truncatePostName(this.props.post.name) ;

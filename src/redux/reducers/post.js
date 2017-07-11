@@ -2,6 +2,7 @@ import { ADD_POST, LOAD_POSTS, EDIT_POST, DELETE_POST } from './../actions/postA
 
 
 export default (state = [], action = {}) => {
+    // console.log(action.type);
     switch (action.type) {
         case ADD_POST:
             return [...state, action.post];
@@ -16,13 +17,13 @@ export default (state = [], action = {}) => {
             });
         case DELETE_POST:
             const index = state.findIndex((post) => (post._id === action._id));
+            console.log(index);
             if (index !== -1) {
                 const newStateData = state;
                 newStateData.splice(index, 1);
-            } else {
-                return state;
+                return newStateData;
             }
-            break;
+            return state;
         default:
             return state;
     }
