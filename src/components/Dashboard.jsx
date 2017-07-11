@@ -27,7 +27,7 @@ class Dashboard extends Component {
 
     render() {
         const PostList = this.props.post.map((post, index) => {
-            return <PostItem key={index} post={post} />
+            return <PostItem key={post._id} post={post} />
         });
         const styles = this.getStyles() ; 
         return (
