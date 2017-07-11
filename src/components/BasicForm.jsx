@@ -1,10 +1,34 @@
 import React, { Component } from 'react';
+
 import TextField from 'material-ui/TextField';
 
 class BasicForm extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            containSpaceConfirm: false,
+            lengthNotEnoughConfirm: false,
+        };
+    }
     getBasicFormInputValue() {
-        const name = this.refs.name.getValue();
-        const content = this.refs.content.getValue();
+        const name = this.refs.name.getValue().trim();
+        const content = this.refs.content.getValue().trim();
+
+        const test = '';
+        console.log(`test validate： ${test.match('[^A-Za-z0-9]')}`);
+
+        if (name.match('[^A-Za-z0-9]') !== null || content.match('[^A-Za-z0-9]') !== null) {
+            this.setState({ containSpaceConfirm: true });
+            this.setState({ lengthNotEnoughConfirm: false });
+            return null;
+        } else if (name.length < 1 || content.length < 1) {
+            this.setState({ containSpaceConfirm: false });
+            this.setState({ lengthNotEnoughConfirm: true });
+            return null;
+        }
+
+        this.setState({ containSpaceConfirm: false });
+        this.setState({ lengthNotEnoughConfirm: false });
         return { name, content };
     }
     getStyles() {
@@ -23,10 +47,14 @@ class BasicForm extends Component {
         };
     }
     render() {
-        const styles = this.getStyles() ;
-        const { post_ } = this.props ;
+        const styles = this.getStyles();
+        const { post_ } = this.props;
         return (
             <div style={styles.root}>
+                <div style={{ color: 'red', 'text-align': 'center' }}>
+                    { this.state.containSpaceConfirm ? '輸入的內容中不能含有特殊字元或空白喔~' : '' }
+                    { this.state.lengthNotEnoughConfirm ? '欄位內容不可以空白喔~' : '' }
+                </div>
                 <TextField
                     ref='name'
                     floatingLabelText='標題'

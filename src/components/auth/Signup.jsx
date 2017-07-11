@@ -7,13 +7,13 @@ import { signup, setAuthErrorEmpty } from './../../redux/actions/authActions.js'
 
 
 class Signup extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
             passwordDiffConfirm: false,
             containSpaceConfirm: false,
             lengthNotEnoughConfirm: false
-        } ;
+        };
     }
     getStyles() {
         return {
@@ -55,33 +55,33 @@ class Signup extends Component {
     onSubmit = (e) => {
         e.preventDefault();
         this.props.setAuthErrorEmpty();
-        let username = this.refs.username.getValue().trim();
-        let password = this.refs.password.getValue().trim();
-        let confirmPassword = this.refs.confirmPassword.getValue().trim();
-        if( username.match('[^A-Za-z0-9]') !== null ||  password.match('[^A-Za-z0-9]') !== null ){
+        const username = this.refs.username.getValue().trim();
+        const password = this.refs.password.getValue().trim();
+        const confirmPassword = this.refs.confirmPassword.getValue().trim();
+        if (username.match('[^A-Za-z0-9]') !== null || password.match('[^A-Za-z0-9]') !== null) {
             this.setState({ containSpaceConfirm: true });
             this.setState({ passwordDiffConfirm: false });
             this.setState({ lengthNotEnoughConfirm: false });
-            return ;
+            return;
         }
-        if(username.length<5 || password.length<5){
+        if (username.length < 5 || password.length < 5) {
             this.setState({ lengthNotEnoughConfirm: true });
             this.setState({ containSpaceConfirm: false });
             this.setState({ passwordDiffConfirm: false });
-            return ;
+            return;
         }
-        if(password !== confirmPassword){
+        if (password !== confirmPassword) {
             this.setState({ containSpaceConfirm: false });
             this.setState({ passwordDiffConfirm: true });
             this.setState({ lengthNotEnoughConfirm: false });
-            return ;
+            return;
         }
         this.setState({ passwordDiffConfirm: false });
         this.setState({ containSpaceConfirm: false });
         this.setState({ lengthNotEnoughConfirm: false });
-        this.props.signup({username, password});
+        this.props.signup({ username, password });
     }
-    componentWillUnmount(){
+    componentWillUnmount() {
         this.props.setAuthErrorEmpty();
     }
     render() {
@@ -110,10 +110,10 @@ class Signup extends Component {
                         type="submit"
                         label="註冊" />
                 </form>
-                <div style={{color: 'red'}}>
-                    { this.state.containSpaceConfirm ? '輸入的內容中不能含有特殊字元或空白喔~':'' }
-                    { this.state.passwordDiffConfirm ? '2次輸入的密碼不同唷，請重新輸入~':'' }
-                    { this.state.lengthNotEnoughConfirm ? '帳號或密碼不足5位~':'' }
+                <div style={{ color: 'red' }}>
+                    { this.state.containSpaceConfirm ? '輸入的內容中不能含有特殊字元或空白喔~' : '' }
+                    { this.state.passwordDiffConfirm ? '2次輸入的密碼不同唷，請重新輸入~' : '' }
+                    { this.state.lengthNotEnoughConfirm ? '帳號或密碼不足5位~' : '' }
                     { this.props.auth.errorMsg } 
                 </div>
             </div>
@@ -123,10 +123,10 @@ class Signup extends Component {
 
 Signup.propTypes = {
     signup: React.PropTypes.func.isRequired,
-    setAuthErrorEmpty:  React.PropTypes.func.isRequired
-}
+    setAuthErrorEmpty: React.PropTypes.func.isRequired
+};
 
-export default connect(( { auth } )=>({
+export default connect(({ auth }) => ({
     auth
-}), {signup, setAuthErrorEmpty})(Radium(Signup));
+}), { signup, setAuthErrorEmpty })(Radium(Signup));
 

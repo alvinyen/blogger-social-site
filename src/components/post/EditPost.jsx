@@ -16,9 +16,11 @@ class EditPost extends Component {
     }
 
     handleSubmit = (e) => {
-        e.preventDefault() ;
+        e.preventDefault();
         const basic = this.refs.basic.getBasicFormInputValue() ;
-        this.props.editPost(basic, this.props.params.post_id);
+        if (basic !== null) {
+            this.props.editPost(basic, this.props.params.post_id);
+        }
     }
     onReturnButtonClick = (e) => {
         browserHistory.push('/');

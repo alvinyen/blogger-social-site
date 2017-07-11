@@ -29,7 +29,9 @@ class NewPost extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
         const basic = this.refs.basic.getBasicFormInputValue();
-        this.props.newPost(basic);
+        if (basic !== null) {
+            this.props.newPost(basic);
+        }
     }
     onReturnButtonClick = (e) => {
         browserHistory.push('/');
