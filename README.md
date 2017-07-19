@@ -6,7 +6,6 @@
 ## To Do
 - 整合Jest/Enzyme完成測試。
 - 使用Socket.IO實作會員文章留言、聊天室等相關功能。
-- 完善RWD設定。
 
 ## 其他
 - 後端API請參閱專案：[backend-of-blogger-social-site](https://github.com/alvinyen/backend-of-blogger-social-site)
