@@ -1,5 +1,7 @@
+import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import InputBox from './InputBox.jsx';
+import CommentBox from './CommentBox.jsx';
 
 
 class CommentBlock extends Component {
@@ -18,14 +20,16 @@ class CommentBlock extends Component {
 
     render() {
         const styles = this.getStyles();
+        const { isAuthenticated } = this.props.auth;
         return (
             <div style={styles.container}>
-                <InputBox />
-                
-                
+                { isAuthenticated ? <InputBox /> : '' }
+                <CommentBox />
             </div>
         );
     }
 }
 
-export default CommentBlock;
+export default connect(({ auth }) => ({
+    auth
+}))(CommentBlock);

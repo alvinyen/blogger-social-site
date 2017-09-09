@@ -1,12 +1,14 @@
 import { combineReducers } from 'redux';
-import auth from './../reducers/auth' ;
-import post from './../reducers/post' ;
-import post_ from './../reducers/post_' ;
-import announce from './announce' ;
+import auth from './auth';
+import post from './post';
+import post_ from './post_';
+import announce from './announce';
+import comments from './comments';
 
 export default combineReducers ({
     auth,
     post,
     post_,
-    announce
+    announce,
+    comments
 });

@@ -1,10 +1,11 @@
+import { connect } from 'react-redux';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import React, { Component } from 'react';
 
 
 class InputBox extends Component {
-    constructor (prop) {
+    constructor(prop) {
         super(prop);
         this.state = {
             value: ''
@@ -42,10 +43,17 @@ class InputBox extends Component {
         console.log(event.target.value);
         this.setState({ value: event.target.value });
     }
+
+    getUserSpan = (name) => {
+        return <span>{name}</span>;
+    }
+
     render() {
         const styles = this.getStyles();
+        const { currentUser } = this.props.auth;
         return (
             <div style={styles.container}>
+                {this.getUserSpan(currentUser.name)}
                 <TextField
                     ref="tf_comment" 
                     inputStyle={styles.TextField.inputStyle}
@@ -61,10 +69,12 @@ class InputBox extends Component {
                     primary={true} 
                     style={styles.button} 
                     labelStyle={styles.label} 
-                    label="返回列表" />
+                    label="送出留言" />
             </div>
         );
     }
 }
 
-export default InputBox;
+export default connect(({ auth }) => ({
+    auth
+}))(InputBox);
