@@ -3,6 +3,7 @@ import { connect } from 'react-redux' ;
 import { getPost, clearPost } from './../../redux/actions/postActions.js' ;
 import RaisedButton from 'material-ui/RaisedButton';
 import { browserHistory } from 'react-router';
+import CommentBlock from '../comment/CommentBlock.jsx';
 
 class ShowPost extends Component {
     componentWillMount = () => {               // params is from the setting of react router
@@ -59,6 +60,7 @@ class ShowPost extends Component {
                     style={styles.button} 
                     labelStyle={styles.label} 
                     label="返回列表" />
+                <CommentBlock />
             </div>
         ) ;
     }

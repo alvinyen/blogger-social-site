@@ -4,6 +4,7 @@ import { Link } from 'react-router';
 import Radium from 'radium';
 import PostActionList from './PostActionList.jsx';
 
+
 class PostItem extends Component {
     getStyles() {
         return {
