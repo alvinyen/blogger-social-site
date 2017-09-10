@@ -2,13 +2,14 @@ import { connect } from 'react-redux';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import React, { Component } from 'react';
+import { addComment, newComment } from '../../redux/actions/commentActions';
 
 
 class InputBox extends Component {
     constructor(prop) {
         super(prop);
         this.state = {
-            value: ''
+            message: ''
         };    
     }
     getStyles() {
@@ -40,8 +41,30 @@ class InputBox extends Component {
     // }
     handleChange = (event) => {
         event.preventDefault();
-        console.log(event.target.value);
-        this.setState({ value: event.target.value });
+        this.setState({ message: event.target.value });
+    }
+
+    handleSubmit = (event) => {
+        event.preventDefault();
+        
+        // console.log(this.state.message);
+        // console.log(this.props.post_id);
+
+        this.props.newComment({
+            post_id: this.props.post_id,
+            name: this.props.auth.currentUser.name, 
+            when: new Date().valueOf(), 
+            comment: this.state.message,
+        });
+
+        // this.props.dispatch(addComment({
+        //     post_id: this.props.post_id,
+        //     name: this.props.auth.currentUser.name, 
+        //     when: new Date().valueOf(), 
+        //     comment: this.state.message,
+        // }));
+
+        this.setState({ message: '' });
     }
 
     getUserSpan = (name) => {
@@ -55,6 +78,7 @@ class InputBox extends Component {
             <div style={styles.container}>
                 {this.getUserSpan(currentUser.name)}
                 <TextField
+                    name="tf_comment"
                     ref="tf_comment" 
                     inputStyle={styles.TextField.inputStyle}
                     placeholder="留言‧‧‧"
@@ -62,10 +86,10 @@ class InputBox extends Component {
                     multiLine={true}
                     onChange={this.handleChange}
                     onKeyDown={this.handleKeyDown}
-                    value={this.state.value} 
+                    value={this.state.message} 
                 />
                 <RaisedButton 
-                    onTouchTap={this.onClick}
+                    onTouchTap={this.handleSubmit}
                     primary={true} 
                     style={styles.button} 
                     labelStyle={styles.label} 
@@ -75,6 +99,7 @@ class InputBox extends Component {
     }
 }
 
-export default connect(({ auth }) => ({
-    auth
-}))(InputBox);
+export default connect(({ auth, comments }) => ({
+    auth,
+    comments,
+}), { newComment })(InputBox);

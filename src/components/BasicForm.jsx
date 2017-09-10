@@ -65,7 +65,7 @@ class BasicForm extends Component {
                         multiLine={true}
                         rows={3}
                         style={styles.textField}
-                        defaultValue={ post_ ? post_.content : '' }  />
+                        defaultValue={post_ ? post_.content : ''}  />
                 </div>
             </div>
         );

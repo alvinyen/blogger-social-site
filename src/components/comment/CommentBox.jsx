@@ -10,7 +10,7 @@ class CommentBox extends Component {
     }
     componentDidMount = () => {
         const { dispatch } = this.props;
-        dispatch(loadInitialComments(null, 2));
+        dispatch(loadInitialComments(null, 3));
     }
     getStyles = () => {
         return {
@@ -22,11 +22,12 @@ class CommentBox extends Component {
     render() {
         const styles = this.getStyles();
         const { comments } = this.props;
-        console.log(comments.commentsArray);
-        const commentItems = comments.commentsArray.map(({ id, name, when, comment }) => {
+
+        const commentItems = comments.commentsList.map(({ name, when, comment }, index) => {
           return (
               <CommentItem 
-                key={id}
+                key={index}
+                id={index}
                 name={name}
                 when={when}
                 comment={comment}

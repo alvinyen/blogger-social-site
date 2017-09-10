@@ -20,7 +20,8 @@ class CommentItem extends Component {
         //     sdfsdfsdf\n
         //     sdfsdf`;
 
-        const { name, when, comment } = this.props;
+        const { name, when, comment, id, } = this.props;
+        // console.log(this.props.params.post_id);
 
         return (
             <div style={styles.container}>
@@ -29,6 +30,7 @@ class CommentItem extends Component {
                     <span>{when}</span>
                 </div>
                 <TextField 
+                    id={id.toString()}
                     value={comment}
                     multiLine={true}
                     underlineShow={false}

@@ -1,17 +1,18 @@
+import { newCommentApiAdd } from '../../../../config/blogger-social-site/config';
+
+const devTest = false;
+
+// comments
+export const INITIAL_COMMENTS = 'INITIAL_COMMENTS';
+export const LOAD_COMMENTS = 'LOAD_COMMENTS';
+export const CLEAR_COMMENTS = 'CLEAR_COMMENTS';
 export const ADD_COMMENT = 'ADD_COMMENT';
 
-export const INITIAL_COMMENTS = 'INITIAL_COMMENTS';
-
-export const addComment = (comment) => ({ 
-    type: ADD_COMMENT, 
-    comment, 
-});
-
+//comments
 export const initialComments = (comments) => ({
     type: INITIAL_COMMENTS,
     comments,
 });
-
 
 export const loadInitialComments = (socket, postId) => {
     return (dispatch) => {
@@ -45,5 +46,59 @@ export const loadInitialComments = (socket, postId) => {
                 },
             ]));
         }
+
+        dispatch(initialComments([]));
     };
 };
+
+export const addComment = (comment) => ({ 
+    type: ADD_COMMENT, 
+    comment,
+});
+
+export const newComment = (data) => {
+    return async (dispatch) => {
+        try {
+            const response = await fetch(newCommentApiAdd, {
+                method: 'post',
+                headers: {
+                    "Content-Type": 'application/json'
+                    // "authorization": sessionStorage.getItem('jwtToken')
+                },
+                body: JSON.stringify(data)
+            });
+            if (response.status !== 200) {
+                throw new Error(`${response.statusText}`);
+            }
+            const responseData = await response.json();
+            dispatch({ type: ADD_COMMENT, comment: responseData.comment });
+            // browserHistory.replace('dashboard');
+        } catch (e) {
+            if (devTest) {
+                console.log('catch the error when newComment in commentActions：', e);
+            }
+        }
+    };
+};
+
+export const fetchCommentsByPostId = (postId) => {
+    return async (dispatch) => {
+        try {
+            console.log(`${newCommentApiAdd}${postId}`);
+            const response = await fetch(`${newCommentApiAdd}${postId}`);
+            if (response.status !== 200) {
+                throw new Error(response.statusText);
+            }
+            const responseData = await response.json();
+            dispatch({ type: LOAD_COMMENTS, comments: responseData.comments });
+        } catch (e) {
+            if (devTest) {
+                console.log('error occur when fetchCommentsByPostId action ', e);
+            }
+        }
+    };
+};
+
+export const clearComments = () => ({ 
+    type: CLEAR_COMMENTS
+});

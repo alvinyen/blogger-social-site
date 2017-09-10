@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux' ;
 import { getPost, clearPost } from './../../redux/actions/postActions.js' ;
+import { clearComments } from '../../redux/actions/commentActions';
 import RaisedButton from 'material-ui/RaisedButton';
 import { browserHistory } from 'react-router';
 import CommentBlock from '../comment/CommentBlock.jsx';
@@ -11,6 +12,7 @@ class ShowPost extends Component {
     }
     componentWillUnmount = () => {
         this.props.clearPost();
+        this.props.clearComments();
     }
     onClick = (e) => {
         browserHistory.push('/');
@@ -50,19 +52,23 @@ class ShowPost extends Component {
     render() {
         const styles = this.getStyles(); 
         const { post_ } = this.props;
+        
         return (
             <div style={styles.container}>
                 <div style={styles.name}>{post_.name}</div>
                 { Object.keys(post_).length !== 0 ? post_.content.split(/\r\n|[\r\n]/).map((content, index)=>(<span key={index} style={styles.content}>{content}<br/></span>)) : '' }
                 <RaisedButton 
                     onTouchTap={this.onClick}
-                    primary={true} 
                     style={styles.button} 
                     labelStyle={styles.label} 
-                    label="返回列表" />
-                <CommentBlock />
+                    label="返回列表"
+                    primary={true}
+                />
+                <CommentBlock 
+                    post_id={this.props.params.post_id}
+                />
             </div>
-        ) ;
+        );
     }
 }
 
@@ -70,6 +76,6 @@ ShowPost.propTypes = {
     post_: React.PropTypes.object.isRequired
 };
 
-export default connect( ({ post_ }) => ({
+export default connect(({ post_ }) => ({
     post_
-}), { getPost, clearPost } )(ShowPost);
+}), { getPost, clearPost, clearComments })(ShowPost);

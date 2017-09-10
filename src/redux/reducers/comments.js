@@ -1,15 +1,30 @@
 import { List } from 'immutable';
-import { ADD_COMMENT, INITIAL_COMMENTS } from '../actions/commentActions';
+import { ADD_COMMENT, 
+         INITIAL_COMMENTS, 
+         LOAD_COMMENTS,
+         CLEAR_COMMENTS } from '../actions/commentActions';
 
-const initialState = { commentsArray: List([]) };
+const initialState = { commentsList: List([]) };
 
 export default (state = initialState, action = {}) => {
     switch (action.type) {
-        case INITIAL_COMMENTS:
+        case LOAD_COMMENTS: 
             return {
                 ...state,
-                commentsArray: List(action.comments),
+                commentsList: List(action.comments),
             };
+        // case INITIAL_COMMENTS:
+        //     return {
+        //         ...state,
+        //         commentsList: List(action.comments),
+        //     };
+        case ADD_COMMENT: 
+            return {
+                ...state,
+                commentsList: state.commentsList.push(action.comment),
+            };
+        case CLEAR_COMMENTS:
+            return initialState;
         default: 
             return state;
     }

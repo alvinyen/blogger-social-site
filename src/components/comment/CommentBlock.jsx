@@ -2,9 +2,15 @@ import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import InputBox from './InputBox.jsx';
 import CommentBox from './CommentBox.jsx';
+import { fetchCommentsByPostId } from '../../redux/actions/commentActions';
 
 
 class CommentBlock extends Component {
+    componentWillMount = () => {
+        console.log(this.props.post_id);
+        this.props.fetchCommentsByPostId(this.props.post_id);
+    }
+
     getStyles() {
         return {
             container: {
@@ -21,9 +27,11 @@ class CommentBlock extends Component {
     render() {
         const styles = this.getStyles();
         const { isAuthenticated } = this.props.auth;
+        const { post_id } = this.props;
+        
         return (
             <div style={styles.container}>
-                { isAuthenticated ? <InputBox /> : '' }
+                { isAuthenticated ? <InputBox post_id={post_id} /> : '' }
                 <CommentBox />
             </div>
         );
@@ -32,4 +40,4 @@ class CommentBlock extends Component {
 
 export default connect(({ auth }) => ({
     auth
-}))(CommentBlock);
+}), { fetchCommentsByPostId })(CommentBlock);
