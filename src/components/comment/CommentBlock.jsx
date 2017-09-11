@@ -6,7 +6,8 @@ import CommentBox from './CommentBox.jsx';
 import { 
     // fetchCommentsByPostId, 
     // loadInitialCommentsSocket 
-    initialComments
+    initialComments,
+    ADD_COMMENT
 } from '../../redux/actions/commentActions';
 
 
@@ -23,6 +24,10 @@ class CommentBlock extends Component {
 
         socket.on('initialComments', ({ comments }) => {
             dispatch(initialComments(comments));
+        });
+
+        socket.on('commentAdded', (responseData) => {
+            dispatch({ type: ADD_COMMENT, comment: responseData.comment });
         });
 
         socket.on('news', function (data) {
@@ -59,8 +64,8 @@ class CommentBlock extends Component {
         
         return (
             <div style={styles.container}>
-                { isAuthenticated ? <InputBox post_id={post_id} /> : '' }
-                <CommentBox />
+                { isAuthenticated ? <InputBox socket={socket} post_id={post_id} /> : '' }
+                <CommentBox socket={socket} />
             </div>
         );
     }

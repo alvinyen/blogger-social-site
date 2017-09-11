@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import CommentItem from './CommentItem.jsx';
+import { ADD_COMMENT } from '../../redux/actions/commentActions';
 
 // import { loadInitialComments } from '../../redux/actions/commentActions';
 
 class CommentBox extends Component {
     constructor(props) {
         super(props);
+        
     }
     componentDidMount = () => {
-        const { dispatch } = this.props;
+        
         // dispatch(loadInitialComments(null, 3));
     }
     getStyles = () => {

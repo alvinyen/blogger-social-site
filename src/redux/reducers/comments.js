@@ -21,7 +21,6 @@ export default (state = initialState, action = {}) => {
         
         case ADD_COMMENT: 
             return {
-                ...state,
                 commentsList: state.commentsList.push(action.comment),
             };
         case CLEAR_COMMENTS:

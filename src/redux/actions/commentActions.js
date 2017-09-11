@@ -104,7 +104,6 @@ export const clearComments = () => ({
 });
 
 
-
 // below are for socket.io
 
 export const initialComments = (resultArray) => ({
@@ -119,3 +118,10 @@ export const initialComments = (resultArray) => ({
 //       });
 //     };
 // };
+                                        // post_id, name, when, comment
+export const addNewCommentSocket = (socket, commentObject) => {
+    console.log(...commentObject);
+    return (dispatch) => {
+        socket.emit('addComment', commentObject);
+    };
+};

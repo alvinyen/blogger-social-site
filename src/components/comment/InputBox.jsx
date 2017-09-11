@@ -2,7 +2,10 @@ import { connect } from 'react-redux';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import React, { Component } from 'react';
-import { addComment, newComment } from '../../redux/actions/commentActions';
+import { 
+        //  addComment, 
+        //  newComment,
+         addNewCommentSocket } from '../../redux/actions/commentActions';
 
 
 class InputBox extends Component {
@@ -50,12 +53,22 @@ class InputBox extends Component {
         // console.log(this.state.message);
         // console.log(this.props.post_id);
 
-        this.props.newComment({
-            post_id: this.props.post_id,
-            name: this.props.auth.currentUser.name, 
-            when: new Date().valueOf(), 
-            comment: this.state.message,
-        });
+        this.props.addNewCommentSocket(
+            this.props.socket,
+            {
+                post_id: this.props.post_id,
+                name: this.props.auth.currentUser.name, 
+                when: new Date().valueOf(), 
+                comment: this.state.message,
+            }
+        );
+
+        // this.props.newComment({
+        //     post_id: this.props.post_id,
+        //     name: this.props.auth.currentUser.name, 
+        //     when: new Date().valueOf(), 
+        //     comment: this.state.message,
+        // });
 
         // this.props.dispatch(addComment({
         //     post_id: this.props.post_id,
@@ -102,4 +115,4 @@ class InputBox extends Component {
 export default connect(({ auth, comments }) => ({
     auth,
     comments,
-}), { newComment })(InputBox);
+}), { addNewCommentSocket })(InputBox);
