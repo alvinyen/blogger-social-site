@@ -1,14 +1,42 @@
+import io from 'socket.io-client';
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import InputBox from './InputBox.jsx';
 import CommentBox from './CommentBox.jsx';
-import { fetchCommentsByPostId } from '../../redux/actions/commentActions';
+import { 
+    // fetchCommentsByPostId, 
+    // loadInitialCommentsSocket 
+    initialComments
+} from '../../redux/actions/commentActions';
 
+
+let socket;
 
 class CommentBlock extends Component {
-    componentWillMount = () => {
-        console.log(this.props.post_id);
-        this.props.fetchCommentsByPostId(this.props.post_id);
+    constructor(props) {
+        super(props);
+        
+        const { dispatch } = this.props;
+
+        socket = io.connect(`http://localhost:3000?post_id=${this.props.post_id}`); // 後面跟要連接的位址
+        // dispatch(loadInitialCommentsSocket(socket, this.props.post_id));
+
+        socket.on('initialComments', ({ comments }) => {
+            dispatch(initialComments(comments));
+        });
+
+        socket.on('news', function (data) {
+            console.log(data);
+            socket.emit('my other event', { my: 'data' });
+        });
+    }
+    componentWillMount = () => { 
+        // console.log(this.props.post_id);
+        
+        // this.socket.emit('loadInitialComments', { 'post_id': this.props.post_id });
+        // loadInitialCommentsSocket(this.socket);
+
+        // this.props.fetchCommentsByPostId(this.props.post_id);
     }
 
     getStyles() {
@@ -40,4 +68,4 @@ class CommentBlock extends Component {
 
 export default connect(({ auth }) => ({
     auth
-}), { fetchCommentsByPostId })(CommentBlock);
+}))(CommentBlock);

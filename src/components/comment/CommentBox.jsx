@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import CommentItem from './CommentItem.jsx';
 
-import { loadInitialComments } from '../../redux/actions/commentActions';
+// import { loadInitialComments } from '../../redux/actions/commentActions';
 
 class CommentBox extends Component {
     constructor(props) {
@@ -10,7 +10,7 @@ class CommentBox extends Component {
     }
     componentDidMount = () => {
         const { dispatch } = this.props;
-        dispatch(loadInitialComments(null, 3));
+        // dispatch(loadInitialComments(null, 3));
     }
     getStyles = () => {
         return {

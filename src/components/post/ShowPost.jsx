@@ -64,7 +64,7 @@ class ShowPost extends Component {
                     label="返回列表"
                     primary={true}
                 />
-                <CommentBlock 
+                <CommentBlock
                     post_id={this.props.params.post_id}
                 />
             </div>

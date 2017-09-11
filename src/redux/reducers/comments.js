@@ -8,16 +8,17 @@ const initialState = { commentsList: List([]) };
 
 export default (state = initialState, action = {}) => {
     switch (action.type) {
-        case LOAD_COMMENTS: 
+        case INITIAL_COMMENTS: // socket.io版，和LOAD_COMMENTS 取其一
             return {
                 ...state,
                 commentsList: List(action.comments),
             };
-        // case INITIAL_COMMENTS:
-        //     return {
-        //         ...state,
-        //         commentsList: List(action.comments),
-        //     };
+        case LOAD_COMMENTS: // api版，和INITIAL_COMMENTS 取其一
+            return {
+                ...state,
+                commentsList: List(action.comments),
+            };
+        
         case ADD_COMMENT: 
             return {
                 ...state,
