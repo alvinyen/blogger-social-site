@@ -6,7 +6,7 @@ import Radium from 'radium';
 import ActionHome from 'material-ui/svg-icons/action/home';
 import { connect } from 'react-redux';
 import { logout } from './../redux/actions/authActions.js';
-import AnnouncementBox from './../components/AnnouncementBox.jsx' ;
+import AnnouncementBox from './../components/AnnouncementBox.jsx';
 
 
 class Header extends Component {
@@ -17,29 +17,40 @@ class Header extends Component {
     render() {
         const { isAuthenticated, currentUser } = this.props.auth;
         const displayAnnounceBox = this.props.announce;
-
+        let name = currentUser.name;
+        if (name !== undefined) {
+            if (name.length > 9) {
+                name = `${name.slice(0, 5)}...`;
+            }
+        }
+        
         const LoginLink = (
-            <span>
+            <span style={styles.authenticationButtonsContainer}>
                 <Link to='signup' style={styles.nav} className="signup">註冊</Link>
                 <Link to='login' style={styles.nav} className="login">登入</Link>
             </span>
         );
 
         const LogoutLink = (
-            <span>
-                <span style={{ color: 'rgb(255, 226, 0)', paddingRight: '15px' }} className="signup">welcome～ {currentUser.name}</span>
+            <span style={styles.authenticationButtonsContainer}>
+                <span style={styles.welcomeName}>{name}</span>
                 <Link to='/' style={styles.nav} className="login" onClick={this.logout} >登出</Link>
             </span>
         );
-
+ 
         return (
             <div className="header" style={{minWidth: '400px'}}>
                 { displayAnnounceBox ?
                  <AnnouncementBox /> : '' }
-                { currentUser.admin ? 
-                    <ActionHome color="rgb(0, 188, 212)" style={styles.actionHome} /> : 
-                    <Link to='/'><ActionHome color='#fff' style={styles.actionHome} /></Link> }
-                {isAuthenticated ? LogoutLink : LoginLink}
+                 
+                 <div style={styles.headerContentContainer}>
+                     <div style={styles.innerWrapper}>
+                        { currentUser.admin ? 
+                                    <ActionHome color="rgb(0, 188, 212)" style={styles.actionHome} /> : 
+                                    <Link to='/'><ActionHome color='#fff' style={styles.actionHome} /></Link> }
+                        {isAuthenticated ? LogoutLink : LoginLink}
+                    </div>
+                </div>
             </div>
         );
     }
@@ -47,6 +58,24 @@ class Header extends Component {
 
 
 const styles = {
+    headerContentContainer: {
+        border: '2px solid red',
+        display: 'flex',
+        justifyContent: 'center',
+    },
+    authenticationButtonsContainer: {
+        display: 'flex',
+        alignItems: 'center',
+        border: '2px solid yellow',
+        width: '130px',
+        justifyContent: 'space-between',
+    },
+    innerWrapper: {
+        border: '2px solid green',
+        width: '960px',
+        display: 'flex',
+        justifyContent: 'space-between',
+    },
     header: {
         position: 'fixed',
         zIndex: '100',
@@ -68,7 +97,7 @@ const styles = {
         fontWeight: '600',
         fontSize: '1em',
         textDecoration: 'none',
-        paddingLeft: '20px',
+        // marginRight: '2px',
         ':hover': {
             cursor: 'pointer',
             textDecoration: 'underline'
@@ -82,6 +111,12 @@ const styles = {
     },
     hasLoggedIn: {
         marginTop: 60
+    },
+    welcomeName: {
+        display: 'inline-block', // 超重要啊！！！span必須讓它變inline-block那些寬度什麼的及相關屬性才會生效啊！！！
+        // border: 'red solid 2px',
+        color: 'rgb(255, 226, 0)',
+        // marginRight: '10px', 
     }
 };
 

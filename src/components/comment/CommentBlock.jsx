@@ -72,15 +72,15 @@ class CommentBlock extends Component {
             container: {
                 border: 'red solid 2px',
                 display: 'inline-box',
-                width: 500,
+                maxWidth: 600,
                 margin: '0 auto',
                 color: '#1d2129',
-                backgroundColor: '#F4F5F7'
+                // backgroundColor: '#F4F5F7'
             },
             feedback: {
                 color: '#aaa',
-                padding: '14px 0px',
-                margin: '0 20px',
+                padding: '10px 0px',
+                margin: '0 10px',
             },
         };
     }

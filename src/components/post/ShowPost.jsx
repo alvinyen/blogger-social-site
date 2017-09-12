@@ -32,19 +32,35 @@ class ShowPost extends Component {
             },
 
             container: {
+                border: 'red solid 2px',
                 padding: '30px',
                 maxWidth: '960px',
                 minWidth: '400px',
-                margin: '56px auto 0'
+                margin: '56px auto 0',
+                textAlign: 'center',
             },
             name: {
                 fontSize: '28px',
                 lineHeight: '28px',
                 color: '#2e4453',
-                paddingBottom: '48px'
+                marginBottom: '28px',
+                border: 'solid green 2px',
+                padding: '10px 0',
+                // textAlign: 'center',
             },
             content: {
                 color: '#666'
+            },
+            articleContentBlock: {
+                border: 'solid 2px red',
+                maxWidth: '600px',
+                margin: '0 auto',
+                textAlign: 'left',
+                padding: '5px',
+
+                fontSize: '18px',
+                lineHeight: '24px',
+                color: 'rgb(46, 68, 83)',
             }
         };
     }
@@ -56,7 +72,9 @@ class ShowPost extends Component {
         return (
             <div style={styles.container}>
                 <div style={styles.name}>{post_.name}</div>
-                { Object.keys(post_).length !== 0 ? post_.content.split(/\r\n|[\r\n]/).map((content, index)=>(<span key={index} style={styles.content}>{content}<br/></span>)) : '' }
+                <div style={styles.articleContentBlock}>
+                    { Object.keys(post_).length !== 0 ? post_.content.split(/\r\n|[\r\n]/).map((content, index)=>(<span key={index} style={styles.content}>{content}<br/></span>)) : '' }
+                </div>
                 <RaisedButton 
                     onTouchTap={this.onClick}
                     style={styles.button} 

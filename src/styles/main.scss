@@ -27,14 +27,14 @@ html,body{
     background-color: rgb(0, 188, 212);
 }
 .login{
-    position: absolute;
-    margin: 18px; 
-    right: 10px;
+    // position: absolute;
+    // margin: 18px; 
+    // right: 10px;
 }
 .signup{
-    position: absolute;
-    margin: 18px;
-    right: 100px;
+    // position: absolute;
+    // margin: 18px;
+    // right: 100px;
 }
 .clearfix{
     &::before,&::after{
@@ -51,5 +51,15 @@ html,body{
 .display-inline{
     display: inline-block;
 }
+// .welcome-name {
+//     display: inline-block; // 超重要啊！！！span必須讓它變inline-block那些寬度什麼的及相關屬性才會生效啊！！！
+    
+//     width: 30%; 
+//     white-space: nowrap; 
+//     // word-break:keep-all; 
+//     overflow: hidden; 
+    
+//     text-overflow: ellipsis;
+// }
 
     

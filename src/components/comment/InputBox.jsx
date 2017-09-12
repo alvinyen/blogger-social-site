@@ -18,21 +18,37 @@ class InputBox extends Component {
     getStyles() {
         return {
             container: {
-                display: 'inline-block'
+                // display: 'inline-block',
+                border: 'solid green 2px',
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                marginBottom: '20px',
+                padding: '5px',
+            },
+            nameSpan: {
+                paddingRight: '10px',
+                fontSize: '18px',
+                lineHeight: '18px',
+                color: 'rgb(46, 68, 83)',
             },
             TextField: {
                 inputStyle: {
+                    width: '350px',
                     padding: '0 10px',
                     borderRadius: '30px',
                     border: '#D5D7DB solid 2px',
-                    backgroundColor: 'white'
+                    backgroundColor: 'white',
                 },
                 hintStyle: {
                     padding: '0 8px',
                     color: 'red'
                 },
+                nameAndTfWrapper: {
+
+                },
                 textareaStyle: {
-                }
+                },
             }
         };
     }
@@ -59,7 +75,8 @@ class InputBox extends Component {
     }
 
     getUserSpan = (name) => {
-        return <span>{name}</span>;
+        const { nameSpan } = this.getStyles();
+        return <span style={nameSpan}>{`${name}：`}</span>;
     }
 
     handleChange = (event) => {
@@ -106,24 +123,28 @@ class InputBox extends Component {
         const { currentUser } = this.props.auth;
         return (
             <div style={styles.container}>
-                {this.getUserSpan(currentUser.name)}
-                <TextField
-                    name="tf_comment"
-                    ref="tf_comment" 
-                    inputStyle={styles.TextField.inputStyle}
-                    placeholder="留言‧‧‧"
-                    underlineShow={false}
-                    multiLine={true}
-                    onChange={this.handleChange}
-                    onKeyDown={this.handleKeyDown}
-                    value={this.state.message} 
-                />
+                <div style={styles.nameAndTfWrapper}>
+                    {this.getUserSpan(currentUser.name)}
+                    <TextField
+                        name="tf_comment"
+                        ref="tf_comment" 
+                        inputStyle={styles.TextField.inputStyle}
+                        placeholder="留言‧‧‧"
+                        underlineShow={false}
+                        multiLine={true}
+                        onChange={this.handleChange}
+                        onKeyDown={this.handleKeyDown}
+                        textareaStyle={styles.TextField.textareaStyle}
+                        value={this.state.message} 
+                    />
+                </div>
                 <RaisedButton 
                     onTouchTap={this.handleSubmit}
                     primary={true} 
                     style={styles.button} 
                     labelStyle={styles.label} 
-                    label="送出留言" />
+                    label="送出留言" 
+                />
             </div>
         );
     }
