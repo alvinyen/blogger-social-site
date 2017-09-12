@@ -42,9 +42,30 @@ class InputBox extends Component {
     //         console.log(event.keyCode);
     //     }
     // }
+
+    componentDidUpdate = () => {
+        // console.log(this.state.message);
+        if (this.state.message.length === 0) {
+            this.props.socket.emit('clearIsTyping', this.props.post_id);
+        } else if (this.state.message.length !== 0) {
+            this.props.socket.emit('typing', this.props.auth.currentUser.name, this.props.post_id);    
+        }
+    }
+
+    componentWillUnmount = () => {
+        if (this.state.message.length !== 0) {
+            this.props.socket.emit('clearIsTyping', this.props.post_id);
+        }
+    }
+
+    getUserSpan = (name) => {
+        return <span>{name}</span>;
+    }
+
     handleChange = (event) => {
         event.preventDefault();
         this.setState({ message: event.target.value });
+        // console.log(event.target.value, this.state.message);
     }
 
     handleSubmit = (event) => {
@@ -78,10 +99,6 @@ class InputBox extends Component {
         // }));
 
         this.setState({ message: '' });
-    }
-
-    getUserSpan = (name) => {
-        return <span>{name}</span>;
     }
 
     render() {

@@ -17,6 +17,10 @@ class CommentBlock extends Component {
     constructor(props) {
         super(props);
         
+        this.state = {
+            feedback: '',
+        };
+
         const { dispatch } = this.props;
 
         socket = io.connect(`http://localhost:3000?post_id=${this.props.post_id}`); // 後面跟要連接的位址
@@ -27,12 +31,25 @@ class CommentBlock extends Component {
         });
 
         socket.on('commentAdded', (responseData) => {
+            this.setState({ feedback: '' });
             dispatch({ type: ADD_COMMENT, comment: responseData.comment });
         });
 
         socket.on('news', function (data) {
             console.log(data);
             socket.emit('my other event', { my: 'data' });
+        });
+
+        socket.on('typing', (handle, post_id) => {
+            if (post_id === this.props.post_id) {
+                this.setState({ feedback: <p><em>{ `${handle} is typing message...` }</em></p> });
+            }
+        });
+
+        socket.on('clearIsTyping', (post_id) => {
+            if (post_id === this.props.post_id) {
+                this.setState({ feedback: '' });
+            }
         });
     }
     componentWillMount = () => { 
@@ -44,6 +61,12 @@ class CommentBlock extends Component {
         // this.props.fetchCommentsByPostId(this.props.post_id);
     }
 
+    componentWillUnmount = () => {
+        // 下面這行拔掉
+        socket.emit('clearIsTyping', this.props.post_id); 
+        socket.disconnect();
+    }
+
     getStyles() {
         return {
             container: {
@@ -53,7 +76,12 @@ class CommentBlock extends Component {
                 margin: '0 auto',
                 color: '#1d2129',
                 backgroundColor: '#F4F5F7'
-            }
+            },
+            feedback: {
+                color: '#aaa',
+                padding: '14px 0px',
+                margin: '0 20px',
+            },
         };
     }
 
@@ -61,9 +89,11 @@ class CommentBlock extends Component {
         const styles = this.getStyles();
         const { isAuthenticated } = this.props.auth;
         const { post_id } = this.props;
+
         
         return (
             <div style={styles.container}>
+                <div style={styles.feedback}>{this.state.feedback}</div>
                 { isAuthenticated ? <InputBox socket={socket} post_id={post_id} /> : '' }
                 <CommentBox socket={socket} />
             </div>
