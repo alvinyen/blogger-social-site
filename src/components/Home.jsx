@@ -7,7 +7,7 @@ import { browserHistory } from 'react-router';
 class Home extends Component {
     componentWillMount() {
         if( this.props.auth.currentUser.admin ){
-            browserHistory.push('dashboard') ;
+            browserHistory.push('dashboard');
         }
         if (this.props.post.length === 0) {
             this.props.fetchPosts();
