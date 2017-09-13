@@ -38,10 +38,11 @@ class InputBox extends Component {
             },
             TextField: {
                 inputStyle: {
-                    width: '350px',
+                    width: '380px',
                     padding: '0 10px',
                     borderRadius: '30px',
-                    border: '#D5D7DB solid 1px',
+                    border: 'solid 1px #CCE0FE',
+                    boxShadow: 'rgb(233, 239, 243) 0px 1px 2px',
                     backgroundColor: 'white',
                 },
                 hintStyle: {

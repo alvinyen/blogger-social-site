@@ -21,12 +21,13 @@ class CommentItem extends Component {
 
                 fontSize: '18px',
                 lineHeight: '18px',
-                color: 'rgb(46, 68, 83)',
+                color: 'rgb(102, 102, 102)',
             },
             top: {
                 fontSize: '14px',
                 display: 'flex',
-                justifyContent: 'space-between'
+                justifyContent: 'space-between',
+                color: '#16AFCA',
             }
         };
     }
