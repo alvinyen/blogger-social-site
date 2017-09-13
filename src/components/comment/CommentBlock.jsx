@@ -9,7 +9,7 @@ import {
     initialComments,
     ADD_COMMENT
 } from '../../redux/actions/commentActions';
-
+import { socketIoServerAdd } from '../../../../config/blogger-social-site/config';
 
 let socket;
 
@@ -23,7 +23,7 @@ class CommentBlock extends Component {
 
         const { dispatch } = this.props;
 
-        socket = io.connect(`http://localhost:3000?post_id=${this.props.post_id}`); // 後面跟要連接的位址
+        socket = io.connect(`${socketIoServerAdd}?post_id=${this.props.post_id}`); // 後面跟要連接的位址
         // dispatch(loadInitialCommentsSocket(socket, this.props.post_id));
 
         socket.on('initialComments', ({ comments }) => {
