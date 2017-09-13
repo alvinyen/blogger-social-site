@@ -28,7 +28,7 @@ class InputBox extends Component {
                 border: 'solid 1px #CCE0FE',
                 borderRadius: '3px 3px 0 0',
                 boxShadow: 'rgb(233, 239, 243) 0px 1px 2px',
-                borderBottom: 'none'
+                // borderBottom: 'none'
             },
             nameSpan: {
                 paddingRight: '10px',
