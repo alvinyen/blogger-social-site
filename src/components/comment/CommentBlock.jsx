@@ -23,7 +23,7 @@ class CommentBlock extends Component {
 
         const { dispatch } = this.props;
 
-        socket = io.connect(`${socketIoServerAdd}?post_id=${this.props.post_id}`); // 後面跟要連接的位址
+        socket = io.connect(`http://api.alvinyen.me?post_id=${this.props.post_id}`); // 後面跟要連接的位址
         // dispatch(loadInitialCommentsSocket(socket, this.props.post_id));
 
         socket.on('initialComments', ({ comments }) => {
