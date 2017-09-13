@@ -17,7 +17,10 @@ class CommentBox extends Component {
     getStyles = () => {
         return {
             container: {
-                border: 'blue 2px solid'
+                // border: 'blue 2px solid',
+                border: 'solid 1px #CCE0FE',
+                borderBottom: 'none',
+                boxShadow: 'rgb(233, 239, 243) 0px 1px 2px',
             }
         };
     }
@@ -26,14 +29,15 @@ class CommentBox extends Component {
         const { comments } = this.props;
 
         const commentItems = comments.commentsList.map(({ name, when, comment }, index) => {
+
           return (
-              <CommentItem 
+            <CommentItem 
                 key={index}
                 id={index}
                 name={name}
                 when={when}
                 comment={comment}
-              />
+            />
           );  
         });
 

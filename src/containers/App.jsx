@@ -4,9 +4,9 @@ import Login from '../components/auth/Login.jsx';
 import Signup from '../components/auth/Signup.jsx';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Radium, { StyleRoot } from 'radium';
-import { connect } from 'react-redux' ;
-import { isAdmin } from './../routes/rootRoute.js' ;
-import { SET_ANNOUNCE_DISPLAY, setAnnounceDisplay } from './../redux/actions/authActions.js' ;
+import { connect } from 'react-redux';
+import { isAdmin } from './../routes/rootRoute.js';
+import { SET_ANNOUNCE_DISPLAY, setAnnounceDisplay } from './../redux/actions/authActions.js';
 
 class App extends Component {
     componentWillMount(){

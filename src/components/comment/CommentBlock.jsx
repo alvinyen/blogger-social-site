@@ -70,7 +70,9 @@ class CommentBlock extends Component {
     getStyles() {
         return {
             container: {
-                border: 'red solid 2px',
+                // border: 'red solid 2px',
+                // border: 'solid 2px #CCE0FE',
+                borderRadius: '3px',
                 display: 'inline-box',
                 maxWidth: 600,
                 margin: '0 auto',

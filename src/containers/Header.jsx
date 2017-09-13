@@ -59,19 +59,19 @@ class Header extends Component {
 
 const styles = {
     headerContentContainer: {
-        border: '2px solid red',
+        // border: '2px solid red',
         display: 'flex',
         justifyContent: 'center',
     },
     authenticationButtonsContainer: {
         display: 'flex',
         alignItems: 'center',
-        border: '2px solid yellow',
+        // border: '2px solid yellow',
         width: '130px',
         justifyContent: 'space-between',
     },
     innerWrapper: {
-        border: '2px solid green',
+        // border: '2px solid green',
         width: '960px',
         display: 'flex',
         justifyContent: 'space-between',

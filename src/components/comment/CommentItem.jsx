@@ -12,8 +12,11 @@ class CommentItem extends Component {
     getStyles = () => {
         return {
             container: {
-                padding: '5px',
-                border: 'yellow solid 5px',
+                padding: '8px',
+                paddingBottom: '0px',
+                // border: 'yellow solid 5px',
+                borderBottom: 'solid 1px #CCE0FE',
+                // borderRadius: '0 0 3px 3px',
                 textAlign: 'left',
 
                 fontSize: '18px',
@@ -21,6 +24,7 @@ class CommentItem extends Component {
                 color: 'rgb(46, 68, 83)',
             },
             top: {
+                fontSize: '14px',
                 display: 'flex',
                 justifyContent: 'space-between'
             }
@@ -88,7 +92,7 @@ class CommentItem extends Component {
         return (
             <div style={styles.container}>
                 <div style={styles.top}>
-                    <span>{name}</span>
+                    <span>from: {name}</span>
                     <span>{ date.toLocaleTimeString("en-us", options) }</span>
                 </div>
                 <TextField 

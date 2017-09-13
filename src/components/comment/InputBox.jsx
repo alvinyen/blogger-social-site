@@ -19,12 +19,16 @@ class InputBox extends Component {
         return {
             container: {
                 // display: 'inline-block',
-                border: 'solid green 2px',
+                // border: 'solid green 2px',
                 display: 'flex',
                 justifyContent: 'space-between',
                 alignItems: 'center',
-                marginBottom: '20px',
-                padding: '5px',
+                // marginBottom: '20px',
+                padding: '10px',
+                border: 'solid 1px #CCE0FE',
+                borderRadius: '3px 3px 0 0',
+                boxShadow: 'rgb(233, 239, 243) 0px 1px 2px',
+                borderBottom: 'none'
             },
             nameSpan: {
                 paddingRight: '10px',
@@ -37,7 +41,7 @@ class InputBox extends Component {
                     width: '350px',
                     padding: '0 10px',
                     borderRadius: '30px',
-                    border: '#D5D7DB solid 2px',
+                    border: '#D5D7DB solid 1px',
                     backgroundColor: 'white',
                 },
                 hintStyle: {

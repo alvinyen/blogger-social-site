@@ -32,7 +32,7 @@ class ShowPost extends Component {
             },
 
             container: {
-                border: 'red solid 2px',
+                // border: 'red solid 2px',
                 padding: '30px',
                 maxWidth: '960px',
                 minWidth: '400px',
@@ -44,7 +44,7 @@ class ShowPost extends Component {
                 lineHeight: '28px',
                 color: '#2e4453',
                 marginBottom: '28px',
-                border: 'solid green 2px',
+                // border: 'solid green 2px',
                 padding: '10px 0',
                 // textAlign: 'center',
             },
@@ -52,11 +52,16 @@ class ShowPost extends Component {
                 color: '#666'
             },
             articleContentBlock: {
-                border: 'solid 2px red',
+                // border: 'solid 2px #CCE0FE',
+                // border: '1px solid rgba(200, 215, 225, 0.5)',
+                border: 'solid 1px #CCE0FE',
+                borderRadius: '3px',
                 maxWidth: '600px',
                 margin: '0 auto',
                 textAlign: 'left',
-                padding: '5px',
+                padding: '10px',
+
+                boxShadow: 'rgb(233, 239, 243) 0px 1px 2px',
 
                 fontSize: '18px',
                 lineHeight: '24px',
