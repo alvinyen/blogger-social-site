@@ -42,7 +42,7 @@ class CommentBox extends Component {
         });
 
         return (
-            <div style={styles.container}>
+            <div style={comments.commentsList.size !== 0 ? styles.container : {}}>
                 {commentItems}
             </div>
         );
