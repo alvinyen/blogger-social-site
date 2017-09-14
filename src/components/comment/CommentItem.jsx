@@ -101,6 +101,7 @@ class CommentItem extends Component {
                     value={comment}
                     multiLine={true}
                     underlineShow={false}
+                    fullWidth={true}
                     readOnly
                 />
             </div>
