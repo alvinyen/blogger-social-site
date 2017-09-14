@@ -68,6 +68,7 @@ const styles = {
         alignItems: 'center',
         // border: '2px solid yellow',
         width: '130px',
+        marginRight: '20px',
         justifyContent: 'space-between',
     },
     innerWrapper: {

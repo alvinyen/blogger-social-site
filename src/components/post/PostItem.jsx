@@ -15,7 +15,8 @@ class PostItem extends Component {
                 border: '1px solid rgba(200, 215, 225, 0.5)',
                 boxShadow: ' 0 1px 2px #e9eff3',
                 marginBottom: '24px',
-                position: 'relative'
+                position: 'relative',
+                maxWidth: '80%',
             },
             content: {
                 padding: '16px 24px 12px',
