@@ -4,7 +4,6 @@ import { Link } from 'react-router';
 import Radium from 'radium';
 import PostActionList from './PostActionList.jsx';
 
-
 class PostItem extends Component {
     getStyles() {
         return {
@@ -37,7 +36,7 @@ class PostItem extends Component {
         }
     }
     truncatePostName = (postName) => {
-        if (postName.length > 15) {
+        if (postName && postName.length > 15) {
             return `${postName.slice(0, 14)}...`;
         }
         return postName;
