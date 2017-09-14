@@ -17,10 +17,11 @@ class Header extends Component {
     render() {
         const { isAuthenticated, currentUser } = this.props.auth;
         const displayAnnounceBox = this.props.announce;
-        let name = currentUser.name;
+        const name = currentUser.name;
+        let truncatedName = name;
         if (name !== undefined) {
             if (name.length > 9) {
-                name = `${name.slice(0, 5)}...`;
+                truncatedName = `${name.slice(0, 5)}...`;
             }
         }
         
@@ -33,13 +34,13 @@ class Header extends Component {
 
         const LogoutLink = (
             <span style={styles.authenticationButtonsContainer}>
-                <span style={styles.welcomeName}>{name}</span>
+                <span style={styles.welcomeName} title={name} >{truncatedName}</span>
                 <Link to='/' style={styles.nav} className="login" onClick={this.logout} >登出</Link>
             </span>
         );
  
         return (
-            <div className="header" style={{minWidth: '400px'}}>
+            <div className="header" style={{ minWidth: '400px' }}>
                 { displayAnnounceBox ?
                  <AnnouncementBox /> : '' }
                  

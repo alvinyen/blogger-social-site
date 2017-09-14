@@ -31,14 +31,18 @@ class InputBox extends Component {
                 // borderBottom: 'none'
             },
             nameSpan: {
-                paddingRight: '10px',
+                width: '12%',
+                // paddingRight: '10px',
                 fontSize: '18px',
                 lineHeight: '18px',
                 color: 'rgb(46, 68, 83)',
             },
             TextField: {
+                container: {
+                    width: '65%',
+                },
                 inputStyle: {
-                    width: '380px',
+                    // width: '600%',
                     padding: '0 10px',
                     borderRadius: '30px',
                     border: 'solid 1px #CCE0FE',
@@ -49,11 +53,11 @@ class InputBox extends Component {
                     padding: '0 8px',
                     color: 'red'
                 },
-                nameAndTfWrapper: {
-
-                },
                 textareaStyle: {
                 },
+            },
+            button: {
+                width: '12%',
             }
         };
     }
@@ -81,7 +85,11 @@ class InputBox extends Component {
 
     getUserSpan = (name) => {
         const { nameSpan } = this.getStyles();
-        return <span style={nameSpan}>{`${name}：`}</span>;
+        let truncatedName = name;
+        if (name.length > 9) {
+            truncatedName = `${name.slice(0, 5)}...`;
+        }
+        return <span style={nameSpan} title={name}>{`${truncatedName}：`}</span>;
     }
 
     handleChange = (event) => {
@@ -128,9 +136,10 @@ class InputBox extends Component {
         const { currentUser } = this.props.auth;
         return (
             <div style={styles.container}>
-                <div style={styles.nameAndTfWrapper}>
+                {/* <div style={styles.nameAndTfWrapper}> */}
                     {this.getUserSpan(currentUser.name)}
                     <TextField
+                        style={styles.TextField.container}
                         name="tf_comment"
                         ref="tf_comment" 
                         inputStyle={styles.TextField.inputStyle}
@@ -142,7 +151,7 @@ class InputBox extends Component {
                         textareaStyle={styles.TextField.textareaStyle}
                         value={this.state.message} 
                     />
-                </div>
+                {/* </div> */}
                 <RaisedButton 
                     onTouchTap={this.handleSubmit}
                     primary={true} 

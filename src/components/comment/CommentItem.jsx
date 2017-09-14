@@ -93,7 +93,7 @@ class CommentItem extends Component {
         return (
             <div style={styles.container}>
                 <div style={styles.top}>
-                    <span>from: {name}</span>
+                    <span>{name}</span>
                     <span>{ date.toLocaleTimeString("en-us", options) }</span>
                 </div>
                 <TextField 
